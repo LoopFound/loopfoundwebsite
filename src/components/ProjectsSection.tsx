@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 import projectLoopFound from "@/assets/project-loopfound.png";
 import projectHaaniya from "@/assets/project-haaniya.png";
-import projectSvs from "@/assets/project-svs.png";
+
 import projectBrittos from "@/assets/project-brittos.png";
 import projectDhc from "@/assets/project-dhc.png";
 import projectInahs from "@/assets/project-inahs.png";
