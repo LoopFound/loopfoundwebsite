@@ -2,34 +2,47 @@ import { useScrollReveal } from "./useScrollReveal";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 
+import projectLoopFound from "@/assets/project-loopfound.png";
+import projectHaaniya from "@/assets/project-haaniya.png";
+import projectSvs from "@/assets/project-svs.png";
+import projectBrittos from "@/assets/project-brittos.png";
+
 const projects = [
   {
     name: "Loop Found",
-    description: "Our own brand portfolio — a showcase of creative identity and bold design thinking.",
+    description:
+      "A modern, interactive portfolio website designed to showcase creative work in an immersive and visually engaging way. Features a futuristic UI, smooth animations, and a minimal yet cinematic aesthetic that highlights projects and personal branding.",
     tag: "Branding",
     stat: "Our Identity",
     statSub: "built from scratch",
+    image: projectLoopFound,
   },
   {
     name: "Haaniya Online Education",
-    description: "A modern e-learning platform connecting students with quality education from anywhere.",
+    description:
+      "A professional educational website designed to showcase an online tutoring platform offering skill-based learning programs. Clean design and organized content flow reflect a focus on accessibility, credibility, and educational branding.",
     tag: "EdTech",
     stat: "500+ Students",
     statSub: "learning online",
+    image: projectHaaniya,
   },
   {
     name: "SVS Study",
-    description: "Clean, focused study platform designed to help students achieve academic excellence.",
+    description:
+      "A modern personal portfolio and study platform designed to showcase a developer's profile, projects, and technical skills. Responsive design and clear information hierarchy demonstrate strong front-end structure and usability-focused web design.",
     tag: "Education",
     stat: "Modern LMS",
     statSub: "academic platform",
+    image: projectSvs,
   },
   {
     name: "St. Britto's Academy",
-    description: "Institutional website bringing a trusted academy's legacy into the digital age.",
+    description:
+      "An official school website designed to present institutional information, academics, admissions, and campus life for a CBSE-affiliated educational institution in Chennai. Organized navigation and formal design reflect credibility and institutional branding.",
     tag: "Institutional",
     stat: "Digital Presence",
     statSub: "for a legacy school",
+    image: projectBrittos,
   },
 ];
 
@@ -56,16 +69,26 @@ const ProjectsSection = () => {
           {projects.map((project, i) => (
             <motion.div
               key={project.name}
-              className="group relative rounded-3xl bg-card border border-border p-8 md:p-10 hover:border-primary/40 transition-colors duration-300 cursor-pointer overflow-hidden"
+              className="group relative rounded-3xl bg-card border border-border overflow-hidden hover:border-primary/40 transition-colors duration-300 cursor-pointer"
               initial={{ opacity: 0, y: 60, scale: 0.95 }}
               animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: i * 0.12, ease: "easeOut" }}
               whileHover={{ y: -6, transition: { duration: 0.3 } }}
             >
+              {/* Project Image */}
+              <div className="relative w-full h-48 md:h-56 overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.name}
+                  className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
+              </div>
+
               <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-              <div className="relative z-10">
-                <div className="flex items-start justify-between mb-8">
+              <div className="relative z-10 p-8 md:p-10">
+                <div className="flex items-start justify-between mb-6">
                   <span className="text-xs font-bold text-primary bg-primary/10 px-4 py-1.5 rounded-full uppercase tracking-wider">
                     {project.tag}
                   </span>
@@ -74,8 +97,8 @@ const ProjectsSection = () => {
                   </div>
                 </div>
 
-                <div className="mb-6">
-                  <p className="font-display text-3xl md:text-4xl font-extrabold text-primary leading-none">{project.stat}</p>
+                <div className="mb-4">
+                  <p className="font-display text-2xl md:text-3xl font-extrabold text-primary leading-none">{project.stat}</p>
                   <p className="text-muted-foreground text-sm mt-1">{project.statSub}</p>
                 </div>
 
