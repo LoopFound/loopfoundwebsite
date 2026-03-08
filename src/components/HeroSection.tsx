@@ -12,7 +12,7 @@ const HeroSection = () => {
           Web Development Agency
         </p>
 
-        <h1 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold leading-[0.9] mb-8">
+        <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[0.9] mb-8">
           <span className="block animate-fade-up text-foreground">WE CREATE</span>
           <span className="block animate-fade-up text-foreground" style={{ animationDelay: "0.1s" }}>
             WEBSITES
