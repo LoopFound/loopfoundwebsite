@@ -18,7 +18,7 @@ const projects = [
     stat: "Our Identity",
     statSub: "built from scratch",
     image: projectLoopFound,
-    link: null,
+    link: "https://loopfound.in/",
   },
   {
     name: "Haaniya Online Education",
