@@ -90,6 +90,7 @@ const ProjectsSection = () => {
               animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: i * 0.12, ease: "easeOut" }}
               whileHover={{ y: -6, transition: { duration: 0.3 } }}
+              onClick={() => project.link && window.open(project.link, "_blank")}
             >
               {/* Project Image */}
               <div className="relative w-full h-48 md:h-56 overflow-hidden">
