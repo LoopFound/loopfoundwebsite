@@ -28,14 +28,14 @@ const Footer = () => (
           >
             <Mail size={16} />
           </a>
-          <a
-            href="https://loopfound.netlify.app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
-          >
-            <Globe size={16} />
-          </a>
+           <a
+             href="https://loopfound.in"
+             target="_blank"
+             rel="noopener noreferrer"
+             className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
+           >
+             <Globe size={16} />
+           </a>
         </div>
       </div>
 
