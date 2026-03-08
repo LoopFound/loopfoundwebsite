@@ -29,15 +29,6 @@ const projects = [
     image: projectHaaniya,
   },
   {
-    name: "SVS Study",
-    description:
-      "A modern personal portfolio and study platform designed to showcase a developer's profile, projects, and technical skills. Responsive design and clear information hierarchy demonstrate strong front-end structure and usability-focused web design.",
-    tag: "Education",
-    stat: "Modern LMS",
-    statSub: "academic platform",
-    image: projectSvs,
-  },
-  {
     name: "St. Britto's Academy",
     description:
       "An official school website designed to present institutional information, academics, admissions, and campus life for a CBSE-affiliated educational institution in Chennai. Organized navigation and formal design reflect credibility and institutional branding.",
