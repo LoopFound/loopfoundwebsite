@@ -22,22 +22,25 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass-card py-3" : "bg-transparent py-5"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled ? "glass-card py-3" : "bg-transparent py-6"
       }`}
     >
       <div className="container flex items-center justify-between">
-        <Link to="/" className="font-serif text-2xl font-bold text-primary">
-          Loop Found
+        <Link to="/" className="font-display text-2xl font-extrabold tracking-tight">
+          <span className="text-foreground">Loop</span>
+          <span className="text-primary">Found</span>
         </Link>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-1">
           {links.map((l) => (
             <Link
               key={l.href}
               to={l.href}
-              className={`text-sm font-medium transition-colors ${
-                location.pathname === l.href ? "text-primary" : "text-muted-foreground hover:text-primary"
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                location.pathname === l.href
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {l.label}
@@ -45,9 +48,9 @@ const Navbar = () => {
           ))}
           <Link
             to="/contact"
-            className="px-5 py-2 rounded-full bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 transition-opacity"
+            className="ml-4 px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-bold hover:scale-105 transition-transform"
           >
-            Work With Us
+            Let's Talk
           </Link>
         </div>
 
@@ -57,13 +60,17 @@ const Navbar = () => {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden glass-card mt-2 mx-4 rounded-lg p-6 flex flex-col gap-4">
+        <div className="md:hidden glass-card mt-3 mx-4 rounded-2xl p-6 flex flex-col gap-3 animate-fade-up">
           {links.map((l) => (
             <Link
               key={l.href}
               to={l.href}
               onClick={() => setMobileOpen(false)}
-              className="text-foreground hover:text-primary transition-colors"
+              className={`px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
+                location.pathname === l.href
+                  ? "bg-primary text-primary-foreground"
+                  : "text-foreground hover:bg-muted"
+              }`}
             >
               {l.label}
             </Link>
@@ -71,9 +78,9 @@ const Navbar = () => {
           <Link
             to="/contact"
             onClick={() => setMobileOpen(false)}
-            className="px-5 py-2 rounded-full bg-primary text-primary-foreground text-sm font-semibold text-center"
+            className="px-4 py-3 rounded-xl bg-primary text-primary-foreground text-sm font-bold text-center mt-2"
           >
-            Work With Us
+            Let's Talk
           </Link>
         </div>
       )}

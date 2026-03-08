@@ -1,5 +1,5 @@
 import { useScrollReveal } from "./useScrollReveal";
-import { Mail, Phone, Globe, Instagram } from "lucide-react";
+import { Mail, Phone, Globe, Instagram, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -20,51 +20,48 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Message sent!",
-      description: "We'll get back to you soon.",
-    });
+    toast({ title: "Message sent!", description: "We'll get back to you soon." });
     setFormData({ name: "", email: "", message: "" });
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 relative">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-
+    <section className="py-24 md:py-32">
       <div ref={ref} className="container px-4">
-        <div className={`text-center mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <p className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3">Get In Touch</p>
-          <h2 className="font-serif text-3xl md:text-5xl font-bold">Let's Work Together</h2>
+        <div className={`mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <p className="text-primary text-sm font-bold tracking-[0.3em] uppercase mb-4">Get In Touch</p>
+          <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
+            Let's Work<br />
+            <span className="italic text-gradient">Together</span>
+          </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          {/* Contact info */}
+        <div className="grid md:grid-cols-2 gap-12 max-w-5xl">
           <div className={`transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "200ms" }}>
-            <p className="text-muted-foreground mb-8 leading-relaxed">
-              Ready to take your business online? Let's build something incredible together. Reach out and we'll get back to you within 24 hours.
+            <p className="text-muted-foreground mb-10 leading-relaxed text-lg">
+              Ready to take your business online? Reach out and we'll get back to you within 24 hours.
             </p>
-            <div className="space-y-5">
+            <div className="space-y-4">
               {contactInfo.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors group"
+                  className="flex items-center gap-4 text-foreground/80 hover:text-primary transition-colors group py-3 border-b border-border hover:border-primary/30"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                  <div className="w-10 h-10 rounded-xl bg-card border border-border flex items-center justify-center group-hover:bg-primary/10 group-hover:border-primary/30 transition-all">
                     <item.icon size={18} className="text-primary" />
                   </div>
-                  <span className="text-sm">{item.label}</span>
+                  <span className="text-sm font-medium flex-1">{item.label}</span>
+                  <ArrowRight size={16} className="text-muted-foreground/30 group-hover:text-primary group-hover:translate-x-1 transition-all" />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Form */}
           <form
             onSubmit={handleSubmit}
-            className={`glass-card rounded-2xl p-8 space-y-5 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+            className={`rounded-3xl bg-card border border-border p-8 md:p-10 space-y-5 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
             style={{ transitionDelay: "400ms" }}
           >
             <Input
@@ -72,7 +69,7 @@ const ContactSection = () => {
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               required
-              className="bg-secondary/50 border-border"
+              className="bg-secondary/50 border-border rounded-xl h-12"
             />
             <Input
               type="email"
@@ -80,7 +77,7 @@ const ContactSection = () => {
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               required
-              className="bg-secondary/50 border-border"
+              className="bg-secondary/50 border-border rounded-xl h-12"
             />
             <Textarea
               placeholder="Tell us about your project..."
@@ -88,9 +85,9 @@ const ContactSection = () => {
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               required
               rows={5}
-              className="bg-secondary/50 border-border"
+              className="bg-secondary/50 border-border rounded-xl"
             />
-            <Button type="submit" className="w-full rounded-full font-bold">
+            <Button type="submit" className="w-full rounded-full font-bold h-12 text-base">
               Send Message
             </Button>
           </form>
