@@ -9,7 +9,8 @@ import { useToast } from "@/hooks/use-toast";
 const contactInfo = [
   { icon: Mail, label: "teamloopfound@gmail.com", href: "mailto:teamloopfound@gmail.com" },
   { icon: Phone, label: "+91 6379586015", href: "tel:+916379586015" },
-  { icon: Globe, label: "loopfound.netlify.app", href: "https://loopfound.netlify.app" },
+  { icon: Phone, label: "+91 8148448835", href: "tel:+918148448835" },
+  { icon: Globe, label: "loopfound.in", href: "https://loopfound.in" },
   { icon: Instagram, label: "@teamloopfound", href: "https://instagram.com/teamloopfound" },
 ];
 
