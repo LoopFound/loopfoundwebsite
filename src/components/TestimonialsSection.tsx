@@ -1,4 +1,5 @@
 import { useScrollReveal } from "./useScrollReveal";
+import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 
 const testimonials = [
@@ -28,26 +29,39 @@ const TestimonialsSection = () => {
   return (
     <section className="py-24 md:py-32">
       <div ref={ref} className="container px-4">
-        <div className={`mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 40 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+        >
           <p className="text-primary text-sm font-bold tracking-[0.3em] uppercase mb-4">Testimonials</p>
           <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
             What our<br />
             <span className="italic text-gradient">clients say</span>
           </h2>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl">
           {testimonials.map((t, i) => (
-            <div
+            <motion.div
               key={t.name}
-              className={`rounded-3xl bg-card border border-border p-8 hover:border-primary/40 transition-all duration-500 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: `${(i + 1) * 100}ms` }}
+              className="rounded-3xl bg-card border border-border p-8 hover:border-primary/40 transition-colors duration-300"
+              initial={{ opacity: 0, y: 50, rotateX: 10 }}
+              animate={isVisible ? { opacity: 1, y: 0, rotateX: 0 } : {}}
+              transition={{ duration: 0.6, delay: i * 0.12, ease: "easeOut" }}
+              whileHover={{ y: -6, transition: { duration: 0.25 } }}
             >
               <div className="flex gap-1 mb-5">
                 {[...Array(5)].map((_, j) => (
-                  <Star key={j} size={16} className="text-primary fill-primary" />
+                  <motion.div
+                    key={j}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={isVisible ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ duration: 0.3, delay: i * 0.12 + 0.3 + j * 0.05 }}
+                  >
+                    <Star size={16} className="text-primary fill-primary" />
+                  </motion.div>
                 ))}
               </div>
               <p className="text-foreground/80 text-sm leading-relaxed mb-6">"{t.text}"</p>
@@ -60,7 +74,7 @@ const TestimonialsSection = () => {
                   <p className="text-muted-foreground text-xs">{t.role}</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

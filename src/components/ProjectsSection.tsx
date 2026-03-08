@@ -1,5 +1,6 @@
 import { useScrollReveal } from "./useScrollReveal";
 import { ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 const projects = [
   {
@@ -38,24 +39,29 @@ const ProjectsSection = () => {
   return (
     <section className="py-24 md:py-32">
       <div ref={ref} className="container px-4">
-        <div className={`mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 40 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
           <p className="text-primary text-sm font-bold tracking-[0.3em] uppercase mb-4">Featured Projects</p>
           <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
             Selected<br />
             <span className="italic text-gradient">Work</span>
           </h2>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, i) => (
-            <div
+            <motion.div
               key={project.name}
-              className={`group relative rounded-3xl bg-card border border-border p-8 md:p-10 hover:border-primary/40 transition-all duration-500 cursor-pointer overflow-hidden ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: `${(i + 1) * 100}ms` }}
+              className="group relative rounded-3xl bg-card border border-border p-8 md:p-10 hover:border-primary/40 transition-colors duration-300 cursor-pointer overflow-hidden"
+              initial={{ opacity: 0, y: 60, scale: 0.95 }}
+              animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{ duration: 0.6, delay: i * 0.12, ease: "easeOut" }}
+              whileHover={{ y: -6, transition: { duration: 0.3 } }}
             >
-              {/* Hover glow */}
               <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <div className="relative z-10">
@@ -78,7 +84,7 @@ const ProjectsSection = () => {
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">{project.description}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
