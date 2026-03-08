@@ -1,9 +1,9 @@
 import { ArrowDown } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated gold dots */}
       <div className="absolute inset-0 pointer-events-none">
         {Array.from({ length: 20 }).map((_, i) => (
           <div
@@ -19,7 +19,6 @@ const HeroSection = () => {
         ))}
       </div>
 
-      {/* Radial glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]" />
 
       <div className="container relative text-center px-4">
@@ -36,21 +35,21 @@ const HeroSection = () => {
           We design websites that sell, convert, and last.
         </p>
         <div className="animate-fade-up" style={{ animationDelay: "0.6s" }}>
-          <a
-            href="#contact"
+          <Link
+            to="/contact"
             className="inline-block px-8 py-4 rounded-full bg-primary text-primary-foreground font-bold text-lg hover:scale-105 transition-transform shadow-lg shadow-primary/25"
           >
             Work With Us
-          </a>
+          </Link>
         </div>
       </div>
 
-      <a
-        href="#about"
+      <Link
+        to="/about"
         className="absolute bottom-10 left-1/2 -translate-x-1/2 text-muted-foreground animate-float"
       >
         <ArrowDown size={24} />
-      </a>
+      </Link>
     </section>
   );
 };
