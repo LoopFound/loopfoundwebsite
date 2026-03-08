@@ -46,12 +46,14 @@ const Navbar = () => {
               {l.label}
             </Link>
           ))}
-          <Link
-            to="/contact"
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSeve3ZVSZ7lKKWntNMNf172Jc-sST-WGfcmB4DbBwCaZKLTjA/viewform"
+            target="_blank"
+            rel="noopener noreferrer"
             className="ml-4 px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-bold hover:scale-105 transition-transform"
           >
             Let's Talk
-          </Link>
+          </a>
         </div>
 
         <button className="md:hidden text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
