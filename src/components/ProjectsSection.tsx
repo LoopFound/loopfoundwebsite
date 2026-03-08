@@ -6,6 +6,8 @@ import projectLoopFound from "@/assets/project-loopfound.png";
 import projectHaaniya from "@/assets/project-haaniya.png";
 import projectSvs from "@/assets/project-svs.png";
 import projectBrittos from "@/assets/project-brittos.png";
+import projectDhc from "@/assets/project-dhc.png";
+import projectInahs from "@/assets/project-inahs.png";
 
 const projects = [
   {
@@ -43,6 +45,24 @@ const projects = [
     stat: "Digital Presence",
     statSub: "for a legacy school",
     image: projectBrittos,
+  },
+  {
+    name: "Digital Horizon Conclave 2026",
+    description:
+      "A modern event website designed to showcase a technology and innovation-focused conclave with a futuristic and professional visual identity. The site highlights event details, speakers, agenda, and registration information in a structured and engaging layout, using bold typography and a tech-inspired aesthetic to attract participants.",
+    tag: "Event",
+    stat: "Tech Conclave",
+    statSub: "national level symposium",
+    image: projectDhc,
+  },
+  {
+    name: "INAHS 2026 Conference",
+    description:
+      "A modern conference website designed to present an international academic conference on Next-Gen AI in Healthcare and Allied Sciences. The site showcases event details, agenda, speakers, and registration sections with a structured layout and minimal, formal UI, highlighting strong event branding and usability-focused web design.",
+    tag: "Conference",
+    stat: "International",
+    statSub: "AI healthcare conference",
+    image: projectInahs,
   },
 ];
 
