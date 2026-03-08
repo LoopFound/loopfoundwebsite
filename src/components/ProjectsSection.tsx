@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 import projectLoopFound from "@/assets/project-loopfound.png";
 import projectHaaniya from "@/assets/project-haaniya.png";
-import projectSvs from "@/assets/project-svs.png";
+
 import projectBrittos from "@/assets/project-brittos.png";
 import projectDhc from "@/assets/project-dhc.png";
 import projectInahs from "@/assets/project-inahs.png";
@@ -27,15 +27,6 @@ const projects = [
     stat: "500+ Students",
     statSub: "learning online",
     image: projectHaaniya,
-  },
-  {
-    name: "SVS Study",
-    description:
-      "A modern personal portfolio and study platform designed to showcase a developer's profile, projects, and technical skills. Responsive design and clear information hierarchy demonstrate strong front-end structure and usability-focused web design.",
-    tag: "Education",
-    stat: "Modern LMS",
-    statSub: "academic platform",
-    image: projectSvs,
   },
   {
     name: "St. Britto's Academy",
