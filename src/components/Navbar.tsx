@@ -77,13 +77,15 @@ const Navbar = () => {
               {l.label}
             </Link>
           ))}
-          <Link
-            to="/contact"
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSeve3ZVSZ7lKKWntNMNf172Jc-sST-WGfcmB4DbBwCaZKLTjA/viewform"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setMobileOpen(false)}
             className="px-4 py-3 rounded-xl bg-primary text-primary-foreground text-sm font-bold text-center mt-2"
           >
             Let's Talk
-          </Link>
+          </a>
         </div>
       )}
     </nav>
