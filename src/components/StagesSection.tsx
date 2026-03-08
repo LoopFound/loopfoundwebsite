@@ -1,4 +1,5 @@
 import { useScrollReveal } from "./useScrollReveal";
+import { motion } from "framer-motion";
 
 const stages = [
   {
@@ -34,22 +35,28 @@ const StagesSection = () => {
   return (
     <section className="py-24 md:py-32">
       <div ref={ref} className="container px-4">
-        <div className={`mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 40 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
+        >
           <p className="text-primary text-sm font-bold tracking-[0.3em] uppercase mb-4">How We Work</p>
           <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
             Website creation<br />
             <span className="italic text-gradient">Stages</span>
           </h2>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6 max-w-5xl">
           {stages.map((stage, i) => (
-            <div
+            <motion.div
               key={stage.num}
-              className={`group rounded-3xl bg-card border border-border p-8 md:p-10 hover:border-primary/40 transition-all duration-500 ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: `${(i + 1) * 100}ms` }}
+              className="group rounded-3xl bg-card border border-border p-8 md:p-10 hover:border-primary/40 transition-colors duration-300"
+              initial={{ opacity: 0, y: 50, scale: 0.95 }}
+              animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{ duration: 0.55, delay: i * 0.12, ease: "easeOut" }}
+              whileHover={{ y: -4, transition: { duration: 0.25 } }}
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center font-display text-primary font-extrabold text-xl">
@@ -63,7 +70,7 @@ const StagesSection = () => {
                 )}
               </div>
               <p className="text-muted-foreground text-sm leading-relaxed">{stage.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
