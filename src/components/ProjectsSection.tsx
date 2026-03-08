@@ -18,6 +18,7 @@ const projects = [
     stat: "Our Identity",
     statSub: "built from scratch",
     image: projectLoopFound,
+    link: null,
   },
   {
     name: "Haaniya Online Education",
@@ -27,6 +28,7 @@ const projects = [
     stat: "500+ Students",
     statSub: "learning online",
     image: projectHaaniya,
+    link: "https://haaniyaonline4u.com/",
   },
   {
     name: "St. Britto's Academy",
@@ -36,6 +38,7 @@ const projects = [
     stat: "Digital Presence",
     statSub: "for a legacy school",
     image: projectBrittos,
+    link: "https://stbrittosacademy.in/",
   },
   {
     name: "Digital Horizon Conclave 2026",
@@ -45,6 +48,7 @@ const projects = [
     stat: "Tech Conclave",
     statSub: "national level symposium",
     image: projectDhc,
+    link: "https://digital-horizon-conclave-2026.vercel.app/",
   },
   {
     name: "INAHS 2026 Conference",
@@ -54,6 +58,7 @@ const projects = [
     stat: "International",
     statSub: "AI healthcare conference",
     image: projectInahs,
+    link: null,
   },
 ];
 
@@ -85,6 +90,7 @@ const ProjectsSection = () => {
               animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: i * 0.12, ease: "easeOut" }}
               whileHover={{ y: -6, transition: { duration: 0.3 } }}
+              onClick={() => project.link && window.open(project.link, "_blank")}
             >
               {/* Project Image */}
               <div className="relative w-full h-48 md:h-56 overflow-hidden">
