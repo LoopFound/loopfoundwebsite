@@ -5,7 +5,7 @@ const organizationSchema = {
   "@type": "Organization",
   name: "Loop Found",
   url: "https://www.loopfound.in",
-  logo: "https://www.loopfound.in/placeholder.svg",
+  logo: "https://www.loopfound.in/images/loopfound-logo.jpg",
   description: "Loop Found is a web development agency that designs websites that sell, convert, and last.",
   contactPoint: {
     "@type": "ContactPoint",

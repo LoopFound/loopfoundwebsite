@@ -27,9 +27,8 @@ const Navbar = () => {
       }`}
     >
       <div className="container flex items-center justify-between">
-        <Link to="/" className="font-display text-2xl font-extrabold tracking-tight">
-          <span className="text-foreground">Loop</span>
-          <span className="text-primary">Found</span>
+        <Link to="/" className="flex items-center">
+          <img src="/images/loopfound-logo.jpg" alt="Loop Found" className="h-10 w-auto rounded" />
         </Link>
 
         <div className="hidden md:flex items-center gap-1">
