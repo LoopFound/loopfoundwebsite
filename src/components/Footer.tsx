@@ -6,9 +6,8 @@ const Footer = () => (
     <div className="container px-4">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
         <div>
-          <Link to="/" className="font-display text-2xl font-extrabold">
-            <span className="text-foreground">Loop</span>
-            <span className="text-primary">Found</span>
+          <Link to="/" className="flex items-center">
+            <img src="/images/loopfound-logo.jpg" alt="Loop Found" className="h-10 w-auto rounded" />
           </Link>
           <p className="text-muted-foreground text-sm mt-2">Websites that keep businesses growing.</p>
         </div>
