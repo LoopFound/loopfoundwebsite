@@ -8,7 +8,7 @@ interface SEOHeadProps {
 }
 
 const SITE_URL = "https://www.loopfound.in";
-const OG_IMAGE = "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/910730b7-3770-47fa-9ab7-969fecc8160c/id-preview-cb0b7a06--8b9562f9-1938-4ad7-bfa1-82bc14483e68.lovable.app-1772952268630.png";
+const OG_IMAGE = "https://www.loopfound.in/images/loopfound-logo.jpg";
 
 const SEOHead = ({ title, description, path, type = "website" }: SEOHeadProps) => {
   const url = `${SITE_URL}${path}`;
