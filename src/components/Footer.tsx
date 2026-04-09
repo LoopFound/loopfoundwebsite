@@ -41,7 +41,7 @@ const Footer = () => (
       <div className="mt-10 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-muted-foreground text-xs">© {new Date().getFullYear()} Loop Found. All rights reserved.</p>
         <div className="flex items-center gap-6">
-          {["About", "Services", "Projects", "Contact"].map((label) => (
+          {["About", "Services", "Projects", "Referral", "Contact"].map((label) => (
             <Link
               key={label}
               to={`/${label.toLowerCase()}`}

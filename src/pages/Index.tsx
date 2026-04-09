@@ -13,6 +13,7 @@ import GoalSection from "@/components/GoalSection";
 import StagesSection from "@/components/StagesSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
+import ReferralSection from "@/components/ReferralSection";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 
@@ -40,6 +41,7 @@ const Index = () => (
       <StagesSection />
       <TestimonialsSection />
       <FAQSection />
+      <ReferralSection />
       <FinalCTA />
     </main>
     <Footer />
