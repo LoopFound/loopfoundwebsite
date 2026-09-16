@@ -24,7 +24,18 @@ const projects = [
   { name: "Digital Horizon Conclave", type: "Event platform", image: projectDhc, link: "https://digital-horizon-conclave-2026.vercel.app/" },
 ];
 
-const heroWords = ["DOMAIN.", "HOSTING.", "URL.", "BROWSER.", "HOMEPAGE.", "LANDING PAGE.", "HTML.", "SERVER.", "IP ADDRESS.", "NAVIGATION."];
+const heroWords = [
+  "DOMAIN.",
+  "HOSTING.",
+  "URL.",
+  "BROWSER.",
+  "HOMEPAGE.",
+  "LANDING PAGE.",
+  "HTML.",
+  "SERVER.",
+  "IP ADDRESS.",
+  "NAVIGATION.",
+];
 
 const AdkoHome = () => {
   const heroRef = useRef<HTMLElement>(null);
@@ -38,7 +49,6 @@ const AdkoHome = () => {
     const context = gsap.context(() => {
       const hero = heroRef.current;
       const copy = hero?.querySelector(".js-hero-content");
-      const intro = hero?.querySelector(".js-hero-intro");
       const rail = hero?.querySelector(".js-project-rail");
       const words = gsap.utils.toArray<HTMLElement>(".js-rotating-word");
 
@@ -46,8 +56,7 @@ const AdkoHome = () => {
       gsap.set(words[0], { autoAlpha: 1, yPercent: 0, rotationX: 0 });
 
       gsap.timeline({ defaults: { ease: "power4.out" } })
-        .from(intro, { y: 24, opacity: 0, duration: 0.55 }, "-=0.28")
-        .fromTo(words[0], { yPercent: 28, rotationX: 90, autoAlpha: 0 }, { yPercent: 0, rotationX: 0, autoAlpha: 1, duration: 0.85 }, "-=0.25")
+        .fromTo(words[0], { yPercent: 28, rotationX: 90, autoAlpha: 0 }, { yPercent: 0, rotationX: 0, autoAlpha: 1, duration: 0.85 })
         .from(".js-hero-copy", { y: 30, opacity: 0, duration: 0.6 }, "-=0.55")
         .from(".js-card-entrance", { y: 90, opacity: 0, duration: 0.9, stagger: 0.1 }, "-=0.55");
 
@@ -174,9 +183,8 @@ const AdkoHome = () => {
       <main id="main-content">
         <section ref={heroRef} className="adko-hero">
           <div className="js-hero-content adko-hero-content">
-            <p className="js-hero-intro adko-hero-eyebrow">Loop Found / Independent web studio</p>
             <h1 className="js-hero-title adko-display adko-hero-title">
-              <span className="sr-only">Creative websites, SEO, and branding by Loop Found.</span>
+              <span className="sr-only">Domains, hosting, URLs, browsers, and websites by Loop Found.</span>
               <span className="adko-word-slot" aria-hidden="true">
                 {heroWords.map((word) => (
                   <span key={word} className={`js-title-line js-rotating-word ${word.length > 9 ? "adko-word--long" : ""}`}>{word}</span>
@@ -184,7 +192,7 @@ const AdkoHome = () => {
               </span>
             </h1>
             <p className="js-hero-copy adko-hero-copy">
-              Websites with the clarity, personality, and performance to move a business forward.
+              WEBSITES THAT STAY IN LOOP
             </p>
           </div>
 

@@ -98,7 +98,7 @@ const MemberProfile = () => {
 
       <Navbar />
 
-      <main id="main-content" className="pt-24 md:pt-32">
+      <main id="main-content" className="pt-32 md:pt-40">
         {/* Top Breadcrumb & Kicker */}
         <section className="container px-4 sm:px-6 mb-8">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#151515]/10 pb-4">

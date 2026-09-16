@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 const links = [
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Projects", href: "/projects" },
-  { label: "Referral", href: "/referral" },
-  { label: "Contact", href: "/contact" },
+  { label: "OUR WORK", href: "/projects", hasDropdown: true },
+  { label: "OUR SERVICES", href: "/services" },
+  { label: "OUR CAMPAIGNS", href: "/referral" },
+  { label: "ABOUT US", href: "/about" },
 ];
 
 const Navbar = () => {
@@ -16,83 +15,119 @@ const Navbar = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
+    const onScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <>
-    <a className="skip-link" href="#main-content">Skip to content</a>
-    <nav aria-label="Primary navigation"
-      className={`fixed top-0 left-0 right-0 z-50 border-b border-black/10 bg-foreground py-3 text-background transition-all duration-500 ${
-        scrolled ? "shadow-lg shadow-black/10" : ""
-      }`}
-    >
-      <div className="container flex items-center justify-between">
-        <Link to="/" className="group block rounded-lg" aria-label="Loop Found home">
-          <img src="/images/loopfound-logo.jpg" alt="Loop Found" width="76" height="42" className="h-[42px] w-[76px] rounded-md object-cover shadow-sm transition-transform duration-300 group-hover:scale-105" />
-        </Link>
-
-        <div className="hidden lg:flex items-center gap-1">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              to={l.href}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                location.pathname === l.href
-                  ? "bg-primary text-primary-foreground"
-                  : "text-background/60 hover:text-background"
-              }`}
-            >
-              {l.label}
-            </Link>
-          ))}
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
+      <nav
+        aria-label="Primary navigation"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-[#ffffff]/95 backdrop-blur-md shadow-sm border-b border-black/[0.08] py-3.5"
+            : "bg-[#f7f7f4]/90 backdrop-blur-sm border-b border-black/[0.05] py-4 md:py-5"
+        }`}
+      >
+        <div className="container max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between">
+          {/* Logo on Left - Stacked bold uppercase letters like AD.KO. */}
           <Link
-            to="/contact"
-            className="ml-4 rounded-full bg-background px-6 py-2.5 text-sm font-bold text-foreground transition-transform hover:scale-105"
+            to="/"
+            className="group flex items-center gap-3 text-left"
+            aria-label="Loop Found home"
           >
-            Let's Talk
+            <img
+              src="/images/loopfound-logo.jpg"
+              alt="Loop Found"
+              width="44"
+              height="44"
+              className="h-[38px] w-[38px] rounded-lg object-cover shadow-sm transition-transform duration-300 group-hover:scale-105"
+            />
+            <span className="adko-display text-2xl font-bold tracking-tight text-[#151515] leading-[0.85] flex flex-col">
+              <span>LOOP.</span>
+              <span>FOUND.</span>
+            </span>
           </Link>
+
+          {/* Nav Links in Center */}
+          <div className="hidden lg:flex items-center gap-8 xl:gap-10">
+            {links.map((l) => {
+              const isActive = location.pathname === l.href;
+              return (
+                <Link
+                  key={l.href}
+                  to={l.href}
+                  className={`inline-flex items-center gap-1 text-[13px] font-bold uppercase tracking-[0.08em] transition-colors duration-200 ${
+                    isActive
+                      ? "text-[#151515] font-extrabold"
+                      : "text-[#151515]/75 hover:text-black"
+                  }`}
+                >
+                  <span>{l.label}</span>
+                  {l.hasDropdown && (
+                    <ChevronDown size={13} className="text-[#151515]/60 -mr-0.5" />
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Right CTA Button - Pill shaped GET IN TOUCH */}
+          <div className="hidden lg:flex items-center">
+            <Link
+              to="/contact"
+              className="relative inline-flex items-center justify-center rounded-full border border-black/25 bg-white/80 px-7 py-2.5 text-[12px] font-bold uppercase tracking-wider text-[#151515] shadow-[0_0_0_1px_rgba(234,179,8,0.35)] transition-all hover:border-black hover:bg-[#151515] hover:text-[#f7f7f4] hover:shadow-md"
+            >
+              GET IN TOUCH
+            </Link>
+          </div>
+
+          {/* Mobile hamburger button */}
+          <button
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-black/20 text-[#151515] lg:hidden hover:bg-black/5 transition-colors"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
+          >
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
 
-        <button
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-background/20 text-background lg:hidden"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
-          aria-expanded={mobileOpen}
-          aria-controls="mobile-navigation"
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {mobileOpen && (
-        <div id="mobile-navigation" className="mx-4 mt-3 flex flex-col gap-3 rounded-2xl border border-black/10 bg-foreground p-6 text-background shadow-2xl lg:hidden animate-fade-up">
-          {links.map((l) => (
+        {/* Mobile menu sheet */}
+        {mobileOpen && (
+          <div
+            id="mobile-navigation"
+            className="mx-4 mt-3 flex flex-col gap-2 rounded-2xl border border-black/10 bg-white p-6 text-[#151515] shadow-2xl lg:hidden animate-fade-up"
+          >
+            {links.map((l) => (
+              <Link
+                key={l.href}
+                to={l.href}
+                onClick={() => setMobileOpen(false)}
+                className={`px-4 py-3 rounded-xl text-sm font-bold uppercase tracking-wider transition-colors ${
+                  location.pathname === l.href
+                    ? "bg-primary text-black font-extrabold"
+                    : "text-[#151515]/80 hover:bg-black/5"
+                }`}
+              >
+                {l.label}
+              </Link>
+            ))}
             <Link
-              key={l.href}
-              to={l.href}
+              to="/contact"
               onClick={() => setMobileOpen(false)}
-              className={`px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
-                location.pathname === l.href
-                  ? "bg-primary text-primary-foreground"
-                  : "text-background hover:bg-background/10"
-              }`}
+              className="mt-3 rounded-full border border-black/20 bg-[#151515] px-4 py-3 text-center text-xs font-bold uppercase tracking-wider text-[#f7f7f4] shadow-md"
             >
-              {l.label}
+              GET IN TOUCH
             </Link>
-          ))}
-          <Link
-            to="/contact"
-            onClick={() => setMobileOpen(false)}
-            className="mt-2 rounded-xl bg-background px-4 py-3 text-center text-sm font-bold text-foreground"
-          >
-            Let's Talk
-          </Link>
-        </div>
-      )}
-    </nav>
+          </div>
+        )}
+      </nav>
     </>
   );
 };

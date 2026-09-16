@@ -209,8 +209,8 @@
   .adko-hero {
     display: flex;
     flex-direction: column;
-    height: max(800px, 100svh);
-    padding-top: clamp(130px, 16svh, 175px);
+    min-height: max(880px, 100svh);
+    padding-top: clamp(160px, 20svh, 235px);
     background: #f7f7f4;
     position: relative;
     overflow: hidden;
@@ -227,25 +227,26 @@
   }
 
   .adko-hero-eyebrow {
-    margin-bottom: 16px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #4b4b4b;
+    display: none;
   }
 
   .adko-hero-title {
-    font-size: clamp(80px, 12vw, 194px);
-    letter-spacing: -0.025em;
+    font-size: clamp(92px, 16.5vw, 225px);
+    line-height: 0.86;
+    letter-spacing: -0.015em;
+    color: #151515;
   }
 
   .adko-hero-copy {
-    max-width: 740px;
-    margin: 12px auto 0;
-    font-size: clamp(16px, 1.7vw, 24px);
-    line-height: 1.5;
-    color: #252525;
+    max-width: 860px;
+    margin: 24px auto 0;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(15px, 1.85vw, 22px);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    line-height: 1.35;
+    color: #151515;
     text-wrap: balance;
   }
 
@@ -266,9 +267,9 @@
     position: relative;
     z-index: 2;
     flex: 1 0 0;
-    min-height: clamp(440px, 42vw, 650px);
-    margin-top: 0;
-    padding-top: clamp(52px, 4vw, 76px);
+    min-height: clamp(460px, 44vw, 680px);
+    margin-top: clamp(28px, 3.5vw, 54px);
+    padding-top: clamp(76px, 6.5vw, 120px);
     overflow: visible;
     perspective: 2200px;
     perspective-origin: 50% 25%;
