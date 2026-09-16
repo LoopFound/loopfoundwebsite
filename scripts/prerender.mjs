@@ -12,6 +12,12 @@ const routes = [
   { path: "/referral", title: "Refer & Earn — Loop Found Student Referral", description: "Join Loop Found’s referral program and earn from successful introductions." },
   { path: "/privacy", title: "Privacy Notice — Loop Found", description: "How Loop Found handles website analytics and enquiry information." },
   { path: "/terms", title: "Website Terms — Loop Found", description: "Terms for use of the Loop Found website." },
+  { path: "/Gopinath", title: "Gopinath — Co-Founder & CMO at Loop Found", description: "Explore skills, growth strategies, and portfolio of Gopinath, Co-Founder & CMO at Loop Found." },
+  { path: "/gopinath", title: "Gopinath — Co-Founder & CMO at Loop Found", description: "Explore skills, growth strategies, and portfolio of Gopinath, Co-Founder & CMO at Loop Found." },
+  { path: "/Pranith", title: "Pranith Vincent — CEO & Founder at Loop Found", description: "Explore skills, product architecture, and portfolio of Pranith Vincent, CEO & Founder at Loop Found." },
+  { path: "/pranith", title: "Pranith Vincent — CEO & Founder at Loop Found", description: "Explore skills, product architecture, and portfolio of Pranith Vincent, CEO & Founder at Loop Found." },
+  { path: "/SaiCharan", title: "Sai Charan — Backend Developer at Loop Found", description: "Explore skills, serverless systems, and backend architecture of Sai Charan at Loop Found." },
+  { path: "/saicharan", title: "Sai Charan — Backend Developer at Loop Found", description: "Explore skills, serverless systems, and backend architecture of Sai Charan at Loop Found." },
 ];
 
 const meta = (route) => {

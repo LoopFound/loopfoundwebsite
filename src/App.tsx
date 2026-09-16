@@ -14,6 +14,7 @@ import Contact from "./pages/Contact";
 import Referral from "./pages/Referral";
 import NotFound from "./pages/NotFound";
 import Legal from "./pages/Legal";
+import MemberProfile from "./pages/MemberProfile";
 import { OrganizationSchema } from "./components/SchemaOrg";
 import AnalyticsConsent from "./components/AnalyticsConsent";
 
@@ -39,6 +40,7 @@ const App = () => {
             <Route path="/referral" element={<Referral />} />
             <Route path="/privacy" element={<Legal page="privacy" />} />
             <Route path="/terms" element={<Legal page="terms" />} />
+            <Route path="/:memberSlug" element={<MemberProfile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
