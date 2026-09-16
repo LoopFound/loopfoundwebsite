@@ -175,8 +175,8 @@ const AdkoHome = () => {
   return (
     <div ref={pageRef} className="adko-page min-h-screen overflow-hidden bg-[#f7f7f4] text-[#151515]">
       <SEOHead
-        title="Loop Found — Web Development Agency"
-        description="Loop Found creates strategic, conversion-focused websites for growing businesses."
+        title="Loop Found | Web Development Agency & Custom Web Design"
+        description="Loop Found is a web development agency building fast, responsive, conversion-focused websites, custom UI/UX design, and brand systems for growing businesses."
         path="/"
       />
       <Navbar />

@@ -1,4 +1,5 @@
 import { useScrollReveal } from "./useScrollReveal";
+import { FAQSchema } from "./SchemaOrg";
 import {
   Accordion,
   AccordionContent,
@@ -34,6 +35,7 @@ const FAQSection = () => {
 
   return (
     <section className="py-24 md:py-32">
+      <FAQSchema />
       <div ref={ref} className="container px-4">
         <div className={`mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <p className="text-primary text-sm font-bold tracking-[0.3em] uppercase mb-4">FAQ</p>

@@ -2,17 +2,65 @@ import { Helmet } from "react-helmet-async";
 
 const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": ["Organization", "ProfessionalService"],
   name: "Loop Found",
   url: "https://www.loopfound.in",
   logo: "https://www.loopfound.in/images/loopfound-logo.jpg",
-  description: "Loop Found is a web development agency that designs websites that sell, convert, and last.",
+  image: "https://www.loopfound.in/images/loopfound-logo.jpg",
+  description: "Loop Found is a web development agency that designs and builds conversion-focused websites, custom UI/UX, and web applications for growing businesses.",
+  telephone: "+91-6379586015",
+  email: "teamloopfound@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "IN",
+  },
+  priceRange: "$$",
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer service",
     url: "https://www.loopfound.in/contact",
+    email: "teamloopfound@gmail.com",
+    telephone: "+91-6379586015",
   },
   sameAs: ["https://www.instagram.com/teamloopfound"],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Web Development Services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Website Design & UI/UX",
+          description: "Clear, memorable website designs that make the right first impression and drive user conversions.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Web Development",
+          description: "Responsive, fast, and maintainable digital experiences built with modern frameworks.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Brand Identity",
+          description: "Visual systems and brand identity that make a growing business recognisable and trustworthy.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Integrations & Analytics",
+          description: "Connecting CRM, booking tools, and analytics tools aligned with business goals.",
+        },
+      },
+    ],
+  },
 };
 
 const websiteSchema = {
