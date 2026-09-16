@@ -1,73 +1,113 @@
-# Welcome to your Lovable project
+# Loop Found Website
 
-## Project info
+The official website for [Loop Found](https://www.loopfound.in), a web development agency that designs and builds websites focused on business growth, conversions, and long-term usability.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## About the project
 
-## How can I edit this code?
+The website introduces Loop Found's services, process, team, and selected client work. It gives prospective clients several ways to learn about the agency and start a conversation.
 
-There are several ways of editing your application.
+The site includes:
 
-**Use Lovable**
+- A landing page with the agency's positioning and calls to action
+- Services covering UI/UX design, frontend development, branding, and web development
+- A portfolio of selected projects
+- Information about the team and website development process
+- Testimonials, FAQs, integrations, and client promises
+- Contact and consultation details
+- A referral programme for people who introduce new clients
+- SEO metadata, structured data, Google Tag Manager, and Vercel Analytics
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## Routes
 
-Changes made via Lovable will be committed automatically to this repo.
+| Route | Description |
+| --- | --- |
+| `/` | Main landing page |
+| `/about` | Team and agency information |
+| `/services` | Services offered by Loop Found |
+| `/projects` | Selected portfolio projects |
+| `/contact` | Contact details and enquiry form |
+| `/referral` | Referral programme information |
 
-**Use your preferred IDE**
+## Tech stack
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- React 18 and TypeScript
+- Vite
+- Tailwind CSS
+- shadcn/ui and Radix UI
+- React Router
+- Framer Motion
+- TanStack Query
+- Vitest and Testing Library
+- Vercel Analytics
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Getting started
 
-Follow these steps:
+### Prerequisites
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- Node.js 18 or newer
+- npm
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Installation
 
-# Step 3: Install the necessary dependencies.
-npm i
+```bash
+git clone https://github.com/goprocker/loopfoundwebsite.git
+cd loopfoundwebsite
+npm install
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### Local development
+
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The development server runs at `http://localhost:8080` by default.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Available commands
 
-**Use GitHub Codespaces**
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the Vite development server |
+| `npm run build` | Create a production build |
+| `npm run build:dev` | Create a development-mode build |
+| `npm run preview` | Preview the production build locally |
+| `npm run lint` | Run ESLint |
+| `npm run test` | Run the test suite once |
+| `npm run test:watch` | Run tests in watch mode |
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Project structure
 
-## What technologies are used for this project?
+```text
+public/                 Static assets, robots.txt, and sitemap.xml
+src/
+  assets/               Portfolio images
+  components/           Shared page sections and UI components
+  hooks/                Reusable React hooks
+  lib/                  Shared utilities
+  pages/                Route-level page components
+  test/                 Test setup and tests
+  App.tsx                Providers and application routes
+  main.tsx               Application entry point
+```
 
-This project is built with:
+## Deployment
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+The project is configured for deployment on Vercel. `vercel.json` provides SPA route rewrites, asset caching, and basic security headers.
 
-## How can I deploy this project?
+Build command:
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+```bash
+npm run build
+```
 
-## Can I connect a custom domain to my Lovable project?
+Vite writes the production output to `dist/`.
 
-Yes, you can!
+## Current development note
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+The contact form currently shows a success notification and clears the entered values, but it is not connected to an email service, API, or database. A backend integration is required before enquiries can be delivered or stored.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## Contact
+
+- Website: [loopfound.in](https://www.loopfound.in)
+- Email: [teamloopfound@gmail.com](mailto:teamloopfound@gmail.com)
+- Instagram: [@teamloopfound](https://www.instagram.com/teamloopfound)
