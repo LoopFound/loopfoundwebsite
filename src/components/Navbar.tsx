@@ -37,6 +37,12 @@ const Navbar = () => {
           {/* Logo on Left - Stacked bold uppercase letters like AD.KO. */}
           <Link
             to="/"
+            onClick={(e) => {
+              if (location.pathname === "/") {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
             className="group flex items-center gap-3 text-left"
             aria-label="Loop Found home"
           >
