@@ -21,8 +21,10 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({ title: "Message sent!", description: "We'll get back to you soon." });
-    setFormData({ name: "", email: "", message: "" });
+    const subject = encodeURIComponent(`Project enquiry from ${formData.name}`);
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nProject details:\n${formData.message}`);
+    window.location.href = `mailto:teamloopfound@gmail.com?subject=${subject}&body=${body}`;
+    toast({ title: "Opening your email app", description: "Review the prepared message and send it when ready." });
   };
 
   return (
@@ -39,7 +41,7 @@ const ContactSection = () => {
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl">
           <div className={`transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "200ms" }}>
             <p className="text-muted-foreground mb-10 leading-relaxed text-lg">
-              Ready to take your business online? Reach out and we'll get back to you within 24 hours.
+              Ready to build something useful? Tell us about your goals, timeline, and what success looks like for your business.
             </p>
             <div className="space-y-4">
               {contactInfo.map((item) => (
@@ -89,8 +91,11 @@ const ContactSection = () => {
               className="bg-secondary/50 border-border rounded-xl"
             />
             <Button type="submit" className="w-full rounded-full font-bold h-12 text-base">
-              Send Message
+              Prepare Email
             </Button>
+            <p className="text-center text-xs leading-relaxed text-muted-foreground">
+              This opens your email app with the project details filled in. You can review everything before sending.
+            </p>
           </form>
         </div>
       </div>

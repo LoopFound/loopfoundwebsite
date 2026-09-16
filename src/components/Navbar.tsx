@@ -22,17 +22,19 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass-card py-3" : "bg-transparent py-6"
+    <>
+    <a className="skip-link" href="#main-content">Skip to content</a>
+    <nav aria-label="Primary navigation"
+      className={`fixed top-0 left-0 right-0 z-50 border-b border-black/10 bg-foreground py-3 text-background transition-all duration-500 ${
+        scrolled ? "shadow-lg shadow-black/10" : ""
       }`}
     >
       <div className="container flex items-center justify-between">
-        <Link to="/" className="flex items-center">
-          <img src="/images/loopfound-logo.jpg" alt="Loop Found" className="h-10 w-auto rounded" />
+        <Link to="/" className="group block rounded-lg" aria-label="Loop Found home">
+          <img src="/images/loopfound-logo.jpg" alt="Loop Found" width="76" height="42" className="h-[42px] w-[76px] rounded-md object-cover shadow-sm transition-transform duration-300 group-hover:scale-105" />
         </Link>
 
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-1">
           {links.map((l) => (
             <Link
               key={l.href}
@@ -40,29 +42,33 @@ const Navbar = () => {
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 location.pathname === l.href
                   ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground"
+                  : "text-background/60 hover:text-background"
               }`}
             >
               {l.label}
             </Link>
           ))}
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSeve3ZVSZ7lKKWntNMNf172Jc-sST-WGfcmB4DbBwCaZKLTjA/viewform"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-4 px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-bold hover:scale-105 transition-transform"
+          <Link
+            to="/contact"
+            className="ml-4 rounded-full bg-background px-6 py-2.5 text-sm font-bold text-foreground transition-transform hover:scale-105"
           >
             Let's Talk
-          </a>
+          </Link>
         </div>
 
-        <button className="md:hidden text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
+        <button
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-background/20 text-background lg:hidden"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-navigation"
+        >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden glass-card mt-3 mx-4 rounded-2xl p-6 flex flex-col gap-3 animate-fade-up">
+        <div id="mobile-navigation" className="mx-4 mt-3 flex flex-col gap-3 rounded-2xl border border-black/10 bg-foreground p-6 text-background shadow-2xl lg:hidden animate-fade-up">
           {links.map((l) => (
             <Link
               key={l.href}
@@ -71,24 +77,23 @@ const Navbar = () => {
               className={`px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
                 location.pathname === l.href
                   ? "bg-primary text-primary-foreground"
-                  : "text-foreground hover:bg-muted"
+                  : "text-background hover:bg-background/10"
               }`}
             >
               {l.label}
             </Link>
           ))}
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSeve3ZVSZ7lKKWntNMNf172Jc-sST-WGfcmB4DbBwCaZKLTjA/viewform"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/contact"
             onClick={() => setMobileOpen(false)}
-            className="px-4 py-3 rounded-xl bg-primary text-primary-foreground text-sm font-bold text-center mt-2"
+            className="mt-2 rounded-xl bg-background px-4 py-3 text-center text-sm font-bold text-foreground"
           >
             Let's Talk
-          </a>
+          </Link>
         </div>
       )}
     </nav>
+    </>
   );
 };
 

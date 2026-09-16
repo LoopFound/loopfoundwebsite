@@ -5,26 +5,26 @@ import { Palette, Code, Brush, Globe, ArrowRight } from "lucide-react";
 const services = [
   {
     icon: Palette,
-    title: "UI/UX Design",
-    description: "Intuitive, beautiful interfaces that users love. Every pixel intentional, every interaction seamless.",
+    title: "Conversion-focused design",
+    description: "Clear journeys, strong visual hierarchy, and purposeful interfaces that move visitors toward action.",
     num: "01",
   },
   {
     icon: Code,
-    title: "Front-End Development",
-    description: "Lightning-fast, responsive websites built with modern frameworks and clean, maintainable code.",
+    title: "Fast, responsive development",
+    description: "Production-ready websites built for performance, accessibility, maintainability, and every screen size.",
     num: "02",
   },
   {
     icon: Brush,
-    title: "Branding & Identity",
-    description: "Memorable brand systems that communicate your story and set you apart from the competition.",
+    title: "Digital brand systems",
+    description: "Distinctive identities, typography, color, and visual systems designed to remain consistent as you grow.",
     num: "03",
   },
   {
     icon: Globe,
-    title: "Web Development",
-    description: "Full-stack solutions from concept to deployment. Scalable architecture that grows with your business.",
+    title: "Business integrations",
+    description: "Analytics, CRM, booking, chat, and marketing tools connected to make the website useful after launch.",
     num: "04",
   },
 ];
@@ -43,9 +43,9 @@ const ServicesSection = () => {
         >
           <p className="text-primary text-sm font-bold tracking-[0.3em] uppercase mb-4">What We Do</p>
           <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-extrabold leading-tight">
-            We always do<br />
-            <span className="italic text-gradient">More</span> than just<br />
-            websites
+            From first idea<br />
+            to a website that<br />
+            <span className="italic text-gradient">works for you.</span>
           </h2>
         </motion.div>
 

@@ -1,6 +1,7 @@
 import { useScrollReveal } from "./useScrollReveal";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { ArrowUpRight } from "lucide-react";
 
 const FinalCTA = () => {
   const { ref, isVisible } = useScrollReveal();
@@ -9,17 +10,18 @@ const FinalCTA = () => {
     <section className="py-24 md:py-32">
       <div ref={ref} className="container px-4">
         <motion.div
-          className="text-center max-w-4xl mx-auto"
+          className="mx-auto max-w-5xl overflow-hidden rounded-[2rem] bg-primary p-8 text-primary-foreground md:p-14"
           initial={{ opacity: 0, y: 50, scale: 0.95 }}
           animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-10">
-            We can dedicate maximum<br />
-            attention to your project<br />
-            because we only take on<br />
-            <span className="italic text-gradient">limited projects per month</span>
+          <p className="mb-5 text-xs font-extrabold uppercase tracking-[0.25em] opacity-65">Project availability</p>
+          <h2 className="max-w-3xl font-display text-4xl font-extrabold leading-[0.95] tracking-[-0.04em] md:text-6xl lg:text-7xl">
+            A focused team for the work that matters.
           </h2>
+          <p className="mt-6 max-w-xl text-base leading-relaxed opacity-75 md:text-lg">
+            We take on a limited number of projects each month, so every launch gets the thinking, care, and support it deserves.
+          </p>
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isVisible ? { opacity: 1, scale: 1 } : {}}
@@ -27,9 +29,9 @@ const FinalCTA = () => {
           >
             <Link
               to="/contact"
-              className="inline-block px-12 py-5 rounded-full bg-primary text-primary-foreground font-bold text-lg hover:scale-105 transition-transform shadow-[0_0_40px_hsl(45_100%_55%/0.3)]"
+              className="inline-flex items-center gap-2 rounded-full bg-background px-7 py-4 font-bold text-foreground transition-transform hover:-translate-y-0.5"
             >
-              Start a new project
+              Start a new project <ArrowUpRight size={17} />
             </Link>
           </motion.div>
         </motion.div>

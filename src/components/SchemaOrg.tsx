@@ -12,7 +12,7 @@ const organizationSchema = {
     contactType: "customer service",
     url: "https://www.loopfound.in/contact",
   },
-  sameAs: [],
+  sameAs: ["https://www.instagram.com/teamloopfound"],
 };
 
 const websiteSchema = {
