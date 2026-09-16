@@ -10,7 +10,7 @@ import projectLoopFound from "@/assets/project-loopfound.png";
 import projectHaaniya from "@/assets/project-haaniya.png";
 import projectDhc from "@/assets/project-dhc.png";
 
-type PageKind = "about" | "services" | "projects" | "contact" | "referral";
+type PageKind = "about" | "services" | "projects" | "contact" | "referral" | "sitemap";
 
 const projects = [
   { name: "Loop Found", type: "Studio website", image: projectLoopFound, link: "https://loopfound.in/" },
@@ -24,6 +24,7 @@ const data: Record<PageKind, { label: string; title: React.ReactNode; lede: stri
   projects: { label: "Selected launches", title: <>WORK THAT<br />MOVES.</>, lede: "A few recent builds for people making education, events, and ambitious businesses easier to find online.", seo: "Web Design & Development Portfolio | Loop Found Projects", description: "View selected client projects, institutional websites, education platforms, and custom digital experiences designed and built by Loop Found.", tone: "dark" },
   contact: { label: "Start a conversation", title: <>LET’S MAKE<br />A MOVE.</>, lede: "Tell us where your business is headed. We will help shape the right next step.", seo: "Contact Loop Found | Get a Free Web Consultation", description: "Get in touch with Loop Found to discuss your web development, custom design, or re-design project. Contact our team for a free consultation today.", tone: "light" },
   referral: { label: "Loop Found network", title: <>REFER<br />& EARN.</>, lede: "Know a business that needs a website with bite? Make an introduction. We reward successful referrals.", seo: "Web Design Referral Program | Refer & Earn with Loop Found", description: "Introduce clients to Loop Found and earn cash rewards upon project launch. Join our client and student web development referral program today.", tone: "yellow" },
+  sitemap: { label: "Site directory", title: <>EXPLORE<br />LOOP FOUND.</>, lede: "A complete overview of all pages and resources available across the Loop Found website.", seo: "HTML Sitemap | Loop Found Web Agency Directory", description: "Browse the complete directory of pages, services, portfolio projects, and resources on Loop Found.", tone: "light" },
 };
 
 const services = [
@@ -104,6 +105,42 @@ const AgencyInnerPage = ({ page }: { page: PageKind }) => {
       {page === "contact" && <section className="agency-contact"><div className="js-inner-reveal agency-contact-links"><p className="agency-kicker">Reach us direct</p>{contactLinks.map(({ icon: Icon, label, href }) => <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer"><Icon /><span>{label}</span><ArrowUpRight /></a>)}</div><form className="js-inner-reveal agency-contact-form" onSubmit={submit}><p id="contact-form-help" className="text-sm leading-relaxed text-[#f7f7f4]/60">Your message sends securely. Fields marked required must be completed.</p><label className="sr-only" aria-hidden="true">Website<input tabIndex={-1} autoComplete="off" value={form.website} onChange={event => setForm({ ...form, website: event.target.value })} /></label><label>Your name<input required minLength={2} maxLength={100} autoComplete="name" value={form.name} onChange={event => setForm({ ...form, name: event.target.value })} /></label><label>Email<input required type="email" maxLength={254} autoComplete="email" value={form.email} onChange={event => setForm({ ...form, email: event.target.value })} /></label><label>What are we making?<textarea required minLength={10} maxLength={2000} rows={6} value={form.message} onChange={event => setForm({ ...form, message: event.target.value })} /></label><button type="submit" disabled={submission === "sending"} aria-describedby="contact-form-help">{submission === "sending" ? "Sending…" : "Send message"} <ArrowUpRight size={18} /></button><p role="status" aria-live="polite" className={submission === "error" ? "text-sm text-red-300" : "text-sm text-[#f7f7f4]/70"}>{submissionMessage}</p></form></section>}
 
       {page === "referral" && <><section className="agency-grid-section"><div className="js-inner-reveal agency-section-head"><p className="agency-kicker">How it works</p><h2 className="adko-display">MAKE<br />INTRO.</h2></div><div className="agency-step-list">{[["01", "Introduce", "Connect us with business needing a sharper website."], ["02", "We talk", "We take care of discovery, strategy, and project scoping."], ["03", "You earn", "Receive a percentage when the project becomes real."]].map(([n, title, text]) => <article key={n} className="js-inner-reveal"><span>{n}</span><h3 className="adko-display">{title}</h3><p>{text}</p></article>)}</div></section><section className="agency-referral-cta"><p>Ready when you are.</p><a href="https://docs.google.com/forms/d/e/1FAIpQLSeyhHoi6yDZjGk-HJHFkh8cvALE9KjDYnEJhG_j2VVWjeFP_Q/viewform?usp=publish-editor" target="_blank" rel="noreferrer">Join waitlist <ArrowUpRight /></a></section></>}
+
+      {page === "sitemap" && (
+        <section className="agency-grid-section bg-[#f7f7f4] max-w-7xl mx-auto px-5 md:px-10 py-16">
+          <div className="grid gap-12 md:grid-cols-3">
+            <div className="js-inner-reveal">
+              <h2 className="adko-display text-2xl font-bold mb-6 text-[#151515]">MAIN PAGES</h2>
+              <ul className="space-y-4 text-base font-semibold text-[#151515]/80">
+                <li><Link to="/" className="hover:text-primary transition-colors flex items-center justify-between"><span>Home</span> <ArrowUpRight size={16} /></Link></li>
+                <li><Link to="/about" className="hover:text-primary transition-colors flex items-center justify-between"><span>About Us</span> <ArrowUpRight size={16} /></Link></li>
+                <li><Link to="/services" className="hover:text-primary transition-colors flex items-center justify-between"><span>Our Services</span> <ArrowUpRight size={16} /></Link></li>
+                <li><Link to="/projects" className="hover:text-primary transition-colors flex items-center justify-between"><span>Our Projects</span> <ArrowUpRight size={16} /></Link></li>
+                <li><Link to="/contact" className="hover:text-primary transition-colors flex items-center justify-between"><span>Contact Us</span> <ArrowUpRight size={16} /></Link></li>
+                <li><Link to="/referral" className="hover:text-primary transition-colors flex items-center justify-between"><span>Referral Program</span> <ArrowUpRight size={16} /></Link></li>
+              </ul>
+            </div>
+
+            <div className="js-inner-reveal">
+              <h2 className="adko-display text-2xl font-bold mb-6 text-[#151515]">TEAM PROFILES</h2>
+              <ul className="space-y-4 text-base font-semibold text-[#151515]/80">
+                <li><Link to="/Pranith" className="hover:text-primary transition-colors flex items-center justify-between"><span>Pranith Vincent — CEO & Founder</span> <ArrowUpRight size={16} /></Link></li>
+                <li><Link to="/Gopinath" className="hover:text-primary transition-colors flex items-center justify-between"><span>Gopinath — Co-Founder & CMO</span> <ArrowUpRight size={16} /></Link></li>
+                <li><Link to="/SaiCharan" className="hover:text-primary transition-colors flex items-center justify-between"><span>Sai Charan — Backend Developer</span> <ArrowUpRight size={16} /></Link></li>
+              </ul>
+            </div>
+
+            <div className="js-inner-reveal">
+              <h2 className="adko-display text-2xl font-bold mb-6 text-[#151515]">RESOURCES & LEGAL</h2>
+              <ul className="space-y-4 text-base font-semibold text-[#151515]/80">
+                <li><a href="/sitemap.xml" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors flex items-center justify-between"><span>XML Sitemap (for search engines)</span> <ArrowUpRight size={16} /></a></li>
+                <li><Link to="/privacy" className="hover:text-primary transition-colors flex items-center justify-between"><span>Privacy Policy</span> <ArrowUpRight size={16} /></Link></li>
+                <li><Link to="/terms" className="hover:text-primary transition-colors flex items-center justify-between"><span>Terms of Service</span> <ArrowUpRight size={16} /></Link></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      )}
     </main>
     <Footer />
   </div>;

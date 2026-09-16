@@ -12,6 +12,7 @@ import Services from "./pages/Services";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import Referral from "./pages/Referral";
+import Sitemap from "./pages/Sitemap";
 import NotFound from "./pages/NotFound";
 import Legal from "./pages/Legal";
 import MemberProfile from "./pages/MemberProfile";
@@ -38,6 +39,7 @@ const App = () => {
             <Route path="/projects" element={<Projects />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/referral" element={<Referral />} />
+            <Route path="/sitemap" element={<Sitemap />} />
             <Route path="/privacy" element={<Legal page="privacy" />} />
             <Route path="/terms" element={<Legal page="terms" />} />
             <Route path="/:memberSlug" element={<MemberProfile />} />

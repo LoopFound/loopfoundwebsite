@@ -10,6 +10,7 @@ const routes = [
   { path: "/projects", title: "Web Design & Development Portfolio | Loop Found Projects", description: "View selected client projects, institutional websites, education platforms, and custom digital experiences designed and built by Loop Found." },
   { path: "/contact", title: "Contact Loop Found | Get a Free Web Consultation", description: "Get in touch with Loop Found to discuss your web development, custom design, or re-design project. Contact our team for a free consultation today." },
   { path: "/referral", title: "Web Design Referral Program | Refer & Earn with Loop Found", description: "Introduce clients to Loop Found and earn cash rewards upon project launch. Join our client and student web development referral program today." },
+  { path: "/sitemap", title: "HTML Sitemap | Loop Found Web Agency Directory", description: "Browse the complete directory of pages, services, portfolio projects, and resources on Loop Found." },
   { path: "/privacy", title: "Privacy Notice — Loop Found", description: "How Loop Found handles website analytics and enquiry information." },
   { path: "/terms", title: "Website Terms — Loop Found", description: "Terms for use of the Loop Found website." },
   { path: "/Gopinath", title: "Gopinath — Co-Founder & CMO at Loop Found", description: "Explore skills, growth strategies, and portfolio of Gopinath, Co-Founder & CMO at Loop Found." },
