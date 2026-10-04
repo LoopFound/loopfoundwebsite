@@ -21,8 +21,15 @@ const organizationSchema = {
   email: "teamloopfound@gmail.com",
   address: {
     "@type": "PostalAddress",
+    addressLocality: "Chennai",
+    addressRegion: "Tamil Nadu",
     addressCountry: "IN",
   },
+  areaServed: [
+    { "@type": "City", name: "Chennai" },
+    { "@type": "AdministrativeArea", name: "Tamil Nadu" },
+    { "@type": "Country", name: "India" },
+  ],
   priceRange: "$$",
   contactPoint: {
     "@type": "ContactPoint",

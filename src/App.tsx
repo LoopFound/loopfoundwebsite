@@ -1,5 +1,5 @@
 import { Analytics } from "@vercel/analytics/react";
-import { lazy, Suspense, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -7,40 +7,32 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import Projects from "./pages/Projects";
+import Contact from "./pages/Contact";
+import Referral from "./pages/Referral";
+import Sitemap from "./pages/Sitemap";
+import Legal from "./pages/Legal";
+import MemberProfile from "./pages/MemberProfile";
+import ServiceDetail from "./pages/ServiceDetail";
+import ProjectCaseStudy from "./pages/ProjectCaseStudy";
+import NotFound from "./pages/NotFound";
 import { OrganizationSchema } from "./components/SchemaOrg";
 import AnalyticsConsent from "./components/AnalyticsConsent";
 
-const About = lazy(() => import("./pages/About"));
-const Services = lazy(() => import("./pages/Services"));
-const Projects = lazy(() => import("./pages/Projects"));
-const Contact = lazy(() => import("./pages/Contact"));
-const Referral = lazy(() => import("./pages/Referral"));
-const Sitemap = lazy(() => import("./pages/Sitemap"));
-const Legal = lazy(() => import("./pages/Legal"));
-const MemberProfile = lazy(() => import("./pages/MemberProfile"));
-const NotFound = lazy(() => import("./pages/NotFound"));
-
 const queryClient = new QueryClient();
 
-const PageLoader = () => (
-  <div className="min-h-screen bg-[#f7f7f4] flex items-center justify-center">
-    <div className="h-8 w-8 animate-spin rounded-full border-2 border-[#151515] border-t-transparent" />
-  </div>
-);
-
-const App = () => {
+export const AppContent = () => {
   const [analyticsConsent, setAnalyticsConsent] = useState(false);
   const handleAnalyticsConsent = useCallback((granted: boolean) => setAnalyticsConsent(granted), []);
 
-  return <HelmetProvider>
-    <QueryClientProvider client={queryClient}>
+  return <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
         <Sonner />
         <OrganizationSchema />
-        <BrowserRouter>
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
+        <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Services />} />
@@ -50,16 +42,17 @@ const App = () => {
               <Route path="/sitemap" element={<Sitemap />} />
               <Route path="/privacy" element={<Legal page="privacy" />} />
               <Route path="/terms" element={<Legal page="terms" />} />
+              <Route path="/services/:serviceSlug" element={<ServiceDetail />} />
+              <Route path="/projects/:projectSlug" element={<ProjectCaseStudy />} />
               <Route path="/:memberSlug" element={<MemberProfile />} />
               <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </BrowserRouter>
+        </Routes>
         {import.meta.env.PROD && analyticsConsent ? <Analytics /> : null}
         <AnalyticsConsent onChange={handleAnalyticsConsent} />
       </TooltipProvider>
-    </QueryClientProvider>
-  </HelmetProvider>;
+    </QueryClientProvider>;
 };
+
+const App = () => <HelmetProvider><BrowserRouter><AppContent /></BrowserRouter></HelmetProvider>;
 
 export default App;

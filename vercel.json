@@ -1,4 +1,9 @@
 {
+  "redirects": [
+    { "source": "/gopinath", "destination": "/Gopinath", "permanent": true },
+    { "source": "/pranith", "destination": "/Pranith", "permanent": true },
+    { "source": "/saicharan", "destination": "/SaiCharan", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",

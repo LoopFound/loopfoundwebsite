@@ -1,6 +1,6 @@
 import { ArrowUpRight, Mail, Phone, Globe, Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Footer from "./Footer";
@@ -9,30 +9,24 @@ import SEOHead from "./SEOHead";
 import projectLoopFound from "@/assets/project-loopfound.png";
 import projectHaaniya from "@/assets/project-haaniya.png";
 import projectDhc from "@/assets/project-dhc.png";
+import { projectPages, servicePages } from "@/data/seoPages";
 
 type PageKind = "about" | "services" | "projects" | "contact" | "referral" | "sitemap";
 
 const projects = [
-  { name: "Loop Found", type: "Studio website", image: projectLoopFound, link: "https://loopfound.in/" },
-  { name: "Haaniya Online Education", type: "Education platform", image: projectHaaniya, link: "https://haaniyaonline4u.com/" },
-  { name: "Digital Horizon Conclave", type: "Event platform", image: projectDhc, link: "https://digital-horizon-conclave-2026.vercel.app/" },
+  { name: "Loop Found", type: "Studio website", image: projectLoopFound, path: "/projects/loop-found" },
+  { name: "Haaniya Online Education", type: "Education platform", image: projectHaaniya, path: "/projects/haaniya-online-education" },
+  { name: "Digital Horizon Conclave", type: "Event platform", image: projectDhc, path: "/projects/digital-horizon-conclave" },
 ];
 
 const data: Record<PageKind, { label: string; title: React.ReactNode; lede: string; seo: string; description: string; tone: "light" | "dark" | "yellow" }> = {
   about: { label: "About Loop Found", title: <>MADE TO<br />MAKE MOVES.</>, lede: "We pair clear strategy with expressive design and reliable development to give growing businesses a web presence with purpose.", seo: "About Loop Found | Custom Web Development & Design Studio", description: "Learn about Loop Found — a modern web studio pairing strategic design with clean code to help growing businesses build an impactful web presence.", tone: "light" },
-  services: { label: "Capabilities / 01—04", title: <>MAKE THE<br />WEB WORK.</>, lede: "Every engagement connects sharp ideas to practical execution. Nothing decorative without a job to do.", seo: "Web Development & UI/UX Design Services | Loop Found", description: "Explore Loop Found’s web services: custom web design, responsive frontend development, brand identity systems, SEO optimization, and CRM/analytics integrations.", tone: "yellow" },
+  services: { label: "Capabilities / 01—05", title: <>MAKE THE<br />WEB WORK.</>, lede: "Every engagement connects sharp ideas to practical execution. Nothing decorative without a job to do.", seo: "Web Design & Development Services in Chennai | Loop Found", description: "Explore web design, web development, UI/UX, website redesign and technical SEO services from Loop Found in Chennai, Tamil Nadu.", tone: "yellow" },
   projects: { label: "Selected launches", title: <>WORK THAT<br />MOVES.</>, lede: "A few recent builds for people making education, events, and ambitious businesses easier to find online.", seo: "Web Design & Development Portfolio | Loop Found Projects", description: "View selected client projects, institutional websites, education platforms, and custom digital experiences designed and built by Loop Found.", tone: "dark" },
   contact: { label: "Start a conversation", title: <>LET’S MAKE<br />A MOVE.</>, lede: "Tell us where your business is headed. We will help shape the right next step.", seo: "Contact Loop Found | Get a Free Web Consultation", description: "Get in touch with Loop Found to discuss your web development, custom design, or re-design project. Contact our team for a free consultation today.", tone: "light" },
   referral: { label: "Loop Found network", title: <>REFER<br />& EARN.</>, lede: "Know a business that needs a website with bite? Make an introduction. We reward successful referrals.", seo: "Web Design Referral Program | Refer & Earn with Loop Found", description: "Introduce clients to Loop Found and earn cash rewards upon project launch. Join our client and student web development referral program today.", tone: "yellow" },
   sitemap: { label: "Site directory", title: <>EXPLORE<br />LOOP FOUND.</>, lede: "A complete overview of all pages and resources available across the Loop Found website.", seo: "HTML Sitemap | Loop Found Web Agency Directory", description: "Browse the complete directory of pages, services, portfolio projects, and resources on Loop Found.", tone: "light" },
 };
-
-const services = [
-  ["01", "Website strategy", "Positioning, structure, and content direction before pixels."],
-  ["02", "Design & development", "Fast, responsive sites built to tell a clear story and convert."],
-  ["03", "Brand systems", "A consistent visual language your business can keep using."],
-  ["04", "Growth systems", "SEO, analytics, CRM, and useful integrations after launch."],
-];
 
 const contactLinks = [
   { icon: Mail, label: "teamloopfound@gmail.com", href: "mailto:teamloopfound@gmail.com" },
@@ -41,6 +35,8 @@ const contactLinks = [
   { icon: Globe, label: "loopfound.in", href: "https://loopfound.in" },
 ];
 
+const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
+
 const AgencyInnerPage = ({ page }: { page: PageKind }) => {
   const pageRef = useRef<HTMLDivElement>(null);
   const [form, setForm] = useState({ name: "", email: "", message: "", website: "" });
@@ -48,7 +44,7 @@ const AgencyInnerPage = ({ page }: { page: PageKind }) => {
   const [submissionMessage, setSubmissionMessage] = useState("");
   const content = data[page];
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     gsap.registerPlugin(ScrollTrigger);
     const context = gsap.context(() => {
@@ -98,9 +94,9 @@ const AgencyInnerPage = ({ page }: { page: PageKind }) => {
         <section className="agency-grid-section"><div className="js-inner-reveal agency-section-head"><p className="agency-kicker">People behind work</p><h2 className="adko-display">SMALL TEAM.<br />BIG INTENT.</h2></div><div className="agency-team-grid">{[["Pranith Vincent", "CEO & Founder", "Leads strategy and the long view behind every build.", "/Pranith"], ["Gopinath", "Co-Founder & CMO", "Shapes how good work meets the people it is made for.", "/Gopinath"], ["Sai Charan", "Backend Developer", "Builds reliable systems and integrations behind the experiences people use.", "/SaiCharan"]].map(([name, role, text, path]) => <Link to={path} key={name} className="js-inner-reveal agency-person group block transition-colors hover:bg-black/[0.02]"><span>{role}</span><h3 className="adko-display group-hover:text-primary transition-colors">{name}</h3><p>{text}</p><div className="mt-6 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary"><span>View Profile & Skills</span><ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" /></div></Link>)}</div></section>
       </>}
 
-      {page === "services" && <section className="agency-grid-section bg-[#f7f7f4]"><div className="agency-section-head js-inner-reveal"><p className="agency-kicker">What we make</p><h2 className="adko-display">BUILT FOR<br />MOMENTUM.</h2></div><div className="agency-service-list">{services.map(([number, title, description]) => <article key={number} className="js-inner-reveal agency-service-row"><span>{number}</span><h3 className="adko-display">{title}</h3><p>{description}</p><Link to="/contact" aria-label={`Discuss ${title}`}><ArrowUpRight /></Link></article>)}</div></section>}
+      {page === "services" && <section className="agency-grid-section bg-[#f7f7f4]"><div className="agency-section-head js-inner-reveal"><p className="agency-kicker">What we make in Chennai</p><h2 className="adko-display">BUILT FOR<br />MOMENTUM.</h2></div><div className="agency-service-list">{servicePages.map((service, index) => <article key={service.slug} className="js-inner-reveal agency-service-row"><span>{String(index + 1).padStart(2, "0")}</span><h3 className="adko-display">{service.name}</h3><p>{service.intro}</p><Link to={`/services/${service.slug}`} aria-label={`Explore ${service.name}`}><ArrowUpRight /></Link></article>)}</div></section>}
 
-      {page === "projects" && <section className="agency-projects">{projects.map((project, index) => <a className={`js-inner-reveal agency-project agency-project--${index + 1}`} key={project.name} href={project.link} target="_blank" rel="noreferrer"><div className="agency-project-media"><img className="js-inner-image" src={project.image} alt={project.name} loading="lazy" decoding="async" /></div><div><p>{project.type}</p><h2 className="adko-display">{project.name}</h2></div><ArrowUpRight /></a>)}</section>}
+      {page === "projects" && <section className="agency-projects">{projects.map((project, index) => <Link className={`js-inner-reveal agency-project agency-project--${index + 1}`} key={project.name} to={project.path}><div className="agency-project-media"><img className="js-inner-image" src={project.image} alt={`${project.name} website project`} loading="lazy" decoding="async" /></div><div><p>{project.type}</p><h2 className="adko-display">{project.name}</h2></div><ArrowUpRight /></Link>)}</section>}
 
       {page === "contact" && <section className="agency-contact"><div className="js-inner-reveal agency-contact-links"><p className="agency-kicker">Reach us direct</p>{contactLinks.map(({ icon: Icon, label, href }) => <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer"><Icon /><span>{label}</span><ArrowUpRight /></a>)}</div><form className="js-inner-reveal agency-contact-form" onSubmit={submit}><p id="contact-form-help" className="text-sm leading-relaxed text-[#f7f7f4]/60">Your message sends securely. Fields marked required must be completed.</p><label className="sr-only" aria-hidden="true">Website<input tabIndex={-1} autoComplete="off" value={form.website} onChange={event => setForm({ ...form, website: event.target.value })} /></label><label>Your name<input required minLength={2} maxLength={100} autoComplete="name" value={form.name} onChange={event => setForm({ ...form, name: event.target.value })} /></label><label>Email<input required type="email" maxLength={254} autoComplete="email" value={form.email} onChange={event => setForm({ ...form, email: event.target.value })} /></label><label>What are we making?<textarea required minLength={10} maxLength={2000} rows={6} value={form.message} onChange={event => setForm({ ...form, message: event.target.value })} /></label><button type="submit" disabled={submission === "sending"} aria-describedby="contact-form-help">{submission === "sending" ? "Sending…" : "Send message"} <ArrowUpRight size={18} /></button><p role="status" aria-live="polite" className={submission === "error" ? "text-sm text-red-300" : "text-sm text-[#f7f7f4]/70"}>{submissionMessage}</p></form></section>}
 
@@ -108,7 +104,7 @@ const AgencyInnerPage = ({ page }: { page: PageKind }) => {
 
       {page === "sitemap" && (
         <section className="agency-grid-section bg-[#f7f7f4] max-w-7xl mx-auto px-5 md:px-10 py-16">
-          <div className="grid gap-12 md:grid-cols-3">
+          <div className="grid gap-12 md:grid-cols-2 xl:grid-cols-4">
             <div className="js-inner-reveal">
               <h2 className="adko-display text-2xl font-bold mb-6 text-[#151515]">MAIN PAGES</h2>
               <ul className="space-y-4 text-base font-semibold text-[#151515]/80">
@@ -118,6 +114,7 @@ const AgencyInnerPage = ({ page }: { page: PageKind }) => {
                 <li><Link to="/projects" className="hover:text-primary transition-colors flex items-center justify-between"><span>Our Projects</span> <ArrowUpRight size={16} /></Link></li>
                 <li><Link to="/contact" className="hover:text-primary transition-colors flex items-center justify-between"><span>Contact Us</span> <ArrowUpRight size={16} /></Link></li>
                 <li><Link to="/referral" className="hover:text-primary transition-colors flex items-center justify-between"><span>Referral Program</span> <ArrowUpRight size={16} /></Link></li>
+                {servicePages.map((service) => <li key={service.slug}><Link to={`/services/${service.slug}`} className="hover:text-primary transition-colors flex items-center justify-between"><span>{service.name}</span> <ArrowUpRight size={16} /></Link></li>)}
               </ul>
             </div>
 
@@ -127,6 +124,13 @@ const AgencyInnerPage = ({ page }: { page: PageKind }) => {
                 <li><Link to="/Pranith" className="hover:text-primary transition-colors flex items-center justify-between"><span>Pranith Vincent — CEO & Founder</span> <ArrowUpRight size={16} /></Link></li>
                 <li><Link to="/Gopinath" className="hover:text-primary transition-colors flex items-center justify-between"><span>Gopinath — Co-Founder & CMO</span> <ArrowUpRight size={16} /></Link></li>
                 <li><Link to="/SaiCharan" className="hover:text-primary transition-colors flex items-center justify-between"><span>Sai Charan — Backend Developer</span> <ArrowUpRight size={16} /></Link></li>
+              </ul>
+            </div>
+
+            <div className="js-inner-reveal">
+              <h2 className="adko-display text-2xl font-bold mb-6 text-[#151515]">PROJECT CASE STUDIES</h2>
+              <ul className="space-y-4 text-base font-semibold text-[#151515]/80">
+                {projectPages.map((project) => <li key={project.slug}><Link to={`/projects/${project.slug}`} className="hover:text-primary transition-colors flex items-center justify-between"><span>{project.name}</span> <ArrowUpRight size={16} /></Link></li>)}
               </ul>
             </div>
 

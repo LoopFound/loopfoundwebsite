@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "./Navbar";
@@ -18,10 +18,10 @@ const services = [
 ];
 
 const projects = [
-  { name: "Loop Found", type: "Studio website", image: projectLoopFound, link: "https://loopfound.in/" },
-  { name: "Haaniya Online Education", type: "Education platform", image: projectHaaniya, link: "https://haaniyaonline4u.com/" },
-  { name: "St. Britto's Academy", type: "Institutional website", image: null, link: "https://stbrittosacademy.in/" },
-  { name: "Digital Horizon Conclave", type: "Event platform", image: projectDhc, link: "https://digital-horizon-conclave-2026.vercel.app/" },
+  { name: "Loop Found", type: "Studio website", image: projectLoopFound, link: "https://loopfound.in/", caseStudy: "/projects/loop-found" },
+  { name: "Haaniya Online Education", type: "Education platform", image: projectHaaniya, link: "https://haaniyaonline4u.com/", caseStudy: "/projects/haaniya-online-education" },
+  { name: "St. Britto's Academy", type: "Institutional website", image: null, link: "https://stbrittosacademy.in/", caseStudy: "/projects/st-brittos-academy" },
+  { name: "Digital Horizon Conclave", type: "Event platform", image: projectDhc, link: "https://digital-horizon-conclave-2026.vercel.app/", caseStudy: "/projects/digital-horizon-conclave" },
 ];
 
 const heroWords = [
@@ -37,11 +37,13 @@ const heroWords = [
   "NAVIGATION.",
 ];
 
+const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
+
 const AdkoHome = () => {
   const heroRef = useRef<HTMLElement>(null);
   const pageRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion || !pageRef.current || !heroRef.current) return;
@@ -175,8 +177,8 @@ const AdkoHome = () => {
   return (
     <div ref={pageRef} className="adko-page min-h-screen overflow-hidden bg-[#f7f7f4] text-[#151515]">
       <SEOHead
-        title="Loop Found | Web Development Agency & Custom Web Design"
-        description="Loop Found is a web development agency building fast, responsive, conversion-focused websites, custom UI/UX design, and brand systems for growing businesses."
+        title="Web Design & Development Company in Chennai | Loop Found"
+        description="Loop Found is a Chennai web design and development company building responsive, conversion-focused websites, UI/UX systems and web applications."
         path="/"
       />
       <Navbar />
@@ -265,11 +267,9 @@ const AdkoHome = () => {
             </div>
             <div className="mt-20 grid gap-5 md:grid-cols-2">
               {projects.map((project, index) => (
-                <a
+                <Link
                   key={project.name}
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  to={project.caseStudy}
                   className={`js-work-card group overflow-hidden rounded-2xl bg-[#252525] ${index === 0 ? "md:col-span-2" : ""}`}
                 >
                   <div className={`overflow-hidden ${index === 0 ? "aspect-[2/1]" : "aspect-[4/3]"}`}>
@@ -282,7 +282,7 @@ const AdkoHome = () => {
                     </div>
                     <ArrowUpRight className="text-primary" />
                   </div>
-                </a>
+                </Link>
               ))}
             </div>
           </div>
