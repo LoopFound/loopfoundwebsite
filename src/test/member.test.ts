@@ -57,4 +57,12 @@ describe("team member data & slug resolution", () => {
       }
     }
   });
+
+  it("uses each member's real LinkedIn profile", () => {
+    expect(Object.fromEntries(teamMembers.map((member) => [member.slug, member.socials.linkedin]))).toEqual({
+      Gopinath: "https://www.linkedin.com/in/gopinath2638/",
+      Pranith: "https://www.linkedin.com/in/pranithvincent/",
+      SaiCharan: "https://www.linkedin.com/in/sai-charan111/",
+    });
+  });
 });

@@ -1,4 +1,13 @@
 import { Helmet } from "react-helmet-async";
+import { teamMembers } from "@/data/team";
+
+const personReference = (member: (typeof teamMembers)[number]) => ({
+  "@type": "Person",
+  name: member.name,
+  jobTitle: member.role,
+  url: `https://www.loopfound.in/${member.slug}`,
+  sameAs: member.socials.linkedin ? [member.socials.linkedin] : [],
+});
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -23,6 +32,12 @@ const organizationSchema = {
     telephone: "+91-6379586015",
   },
   sameAs: ["https://www.instagram.com/teamloopfound"],
+  founder: teamMembers
+    .filter((member) => member.role.includes("Founder"))
+    .map(personReference),
+  employee: teamMembers
+    .filter((member) => !member.role.includes("Founder"))
+    .map(personReference),
   hasOfferCatalog: {
     "@type": "OfferCatalog",
     name: "Web Development Services",

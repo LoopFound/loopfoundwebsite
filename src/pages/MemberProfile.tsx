@@ -82,6 +82,7 @@ const MemberProfile = () => {
     },
     url: `https://www.loopfound.in/${member.slug}`,
     description: member.tagline,
+    sameAs: [member.socials.linkedin, member.socials.github, member.socials.twitter].filter(Boolean),
     knowsAbout: member.skillCategories.flatMap((c) => c.skills)
   };
 

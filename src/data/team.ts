@@ -139,7 +139,7 @@ export const teamMembers: TeamMember[] = [
     ],
     socials: {
       email: "contact@loopfound.in",
-      linkedin: "https://linkedin.com",
+      linkedin: "https://www.linkedin.com/in/gopinath2638/",
       twitter: "https://x.com"
     }
   },
@@ -246,7 +246,7 @@ export const teamMembers: TeamMember[] = [
     ],
     socials: {
       email: "contact@loopfound.in",
-      linkedin: "https://linkedin.com",
+      linkedin: "https://www.linkedin.com/in/pranithvincent/",
       github: "https://github.com",
       twitter: "https://x.com"
     }
@@ -356,7 +356,7 @@ export const teamMembers: TeamMember[] = [
     socials: {
       email: "contact@loopfound.in",
       github: "https://github.com",
-      linkedin: "https://linkedin.com"
+      linkedin: "https://www.linkedin.com/in/sai-charan111/"
     }
   }
 ];
