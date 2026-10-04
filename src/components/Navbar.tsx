@@ -47,7 +47,7 @@ const Navbar = () => {
             aria-label="Loop Found home"
           >
             <img
-              src="/images/loopfound-logo.jpg"
+              src="/images/loopfound-logo-256.webp"
               alt="Loop Found"
               width="44"
               height="44"

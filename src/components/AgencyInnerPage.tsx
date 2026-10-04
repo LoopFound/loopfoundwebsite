@@ -6,17 +6,20 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import SEOHead from "./SEOHead";
-import projectLoopFound from "@/assets/project-loopfound.png";
-import projectHaaniya from "@/assets/project-haaniya.png";
-import projectDhc from "@/assets/project-dhc.png";
+import projectLoopFound640 from "@/assets/project-loopfound-640.webp";
+import projectLoopFound1280 from "@/assets/project-loopfound-1280.webp";
+import projectHaaniya640 from "@/assets/project-haaniya-640.webp";
+import projectHaaniya1280 from "@/assets/project-haaniya-1280.webp";
+import projectDhc640 from "@/assets/project-dhc-640.webp";
+import projectDhc1280 from "@/assets/project-dhc-1280.webp";
 import { projectPages, servicePages } from "@/data/seoPages";
 
 type PageKind = "about" | "services" | "projects" | "contact" | "referral" | "sitemap";
 
 const projects = [
-  { name: "Loop Found", type: "Studio website", image: projectLoopFound, path: "/projects/loop-found" },
-  { name: "Haaniya Online Education", type: "Education platform", image: projectHaaniya, path: "/projects/haaniya-online-education" },
-  { name: "Digital Horizon Conclave", type: "Event platform", image: projectDhc, path: "/projects/digital-horizon-conclave" },
+  { name: "Loop Found", type: "Studio website", image: projectLoopFound640, imageLarge: projectLoopFound1280, width: 640, height: 368, path: "/projects/loop-found" },
+  { name: "Haaniya Online Education", type: "Education platform", image: projectHaaniya640, imageLarge: projectHaaniya1280, width: 640, height: 368, path: "/projects/haaniya-online-education" },
+  { name: "Digital Horizon Conclave", type: "Event platform", image: projectDhc640, imageLarge: projectDhc1280, width: 640, height: 340, path: "/projects/digital-horizon-conclave" },
 ];
 
 const data: Record<PageKind, { label: string; title: React.ReactNode; lede: string; seo: string; description: string; tone: "light" | "dark" | "yellow" }> = {
@@ -96,7 +99,7 @@ const AgencyInnerPage = ({ page }: { page: PageKind }) => {
 
       {page === "services" && <section className="agency-grid-section bg-[#f7f7f4]"><div className="agency-section-head js-inner-reveal"><p className="agency-kicker">What we make in Chennai</p><h2 className="adko-display">BUILT FOR<br />MOMENTUM.</h2></div><div className="agency-service-list">{servicePages.map((service, index) => <article key={service.slug} className="js-inner-reveal agency-service-row"><span>{String(index + 1).padStart(2, "0")}</span><h3 className="adko-display">{service.name}</h3><p>{service.intro}</p><Link to={`/services/${service.slug}`} aria-label={`Explore ${service.name}`}><ArrowUpRight /></Link></article>)}</div></section>}
 
-      {page === "projects" && <section className="agency-projects">{projects.map((project, index) => <Link className={`js-inner-reveal agency-project agency-project--${index + 1}`} key={project.name} to={project.path}><div className="agency-project-media"><img className="js-inner-image" src={project.image} alt={`${project.name} website project`} loading="lazy" decoding="async" /></div><div><p>{project.type}</p><h2 className="adko-display">{project.name}</h2></div><ArrowUpRight /></Link>)}</section>}
+      {page === "projects" && <section className="agency-projects">{projects.map((project, index) => <Link className={`js-inner-reveal agency-project agency-project--${index + 1}`} key={project.name} to={project.path}><div className="agency-project-media"><img className="js-inner-image" src={project.image} srcSet={`${project.image} 640w, ${project.imageLarge} 1280w`} sizes="(max-width: 767px) 100vw, 50vw" width={project.width} height={project.height} alt={`${project.name} website project`} loading="lazy" decoding="async" /></div><div><p>{project.type}</p><h2 className="adko-display">{project.name}</h2></div><ArrowUpRight /></Link>)}</section>}
 
       {page === "contact" && <section className="agency-contact"><div className="js-inner-reveal agency-contact-links"><p className="agency-kicker">Reach us direct</p>{contactLinks.map(({ icon: Icon, label, href }) => <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer"><Icon /><span>{label}</span><ArrowUpRight /></a>)}</div><form className="js-inner-reveal agency-contact-form" onSubmit={submit}><p id="contact-form-help" className="text-sm leading-relaxed text-[#f7f7f4]/60">Your message sends securely. Fields marked required must be completed.</p><label className="sr-only" aria-hidden="true">Website<input tabIndex={-1} autoComplete="off" value={form.website} onChange={event => setForm({ ...form, website: event.target.value })} /></label><label>Your name<input required minLength={2} maxLength={100} autoComplete="name" value={form.name} onChange={event => setForm({ ...form, name: event.target.value })} /></label><label>Email<input required type="email" maxLength={254} autoComplete="email" value={form.email} onChange={event => setForm({ ...form, email: event.target.value })} /></label><label>What are we making?<textarea required minLength={10} maxLength={2000} rows={6} value={form.message} onChange={event => setForm({ ...form, message: event.target.value })} /></label><button type="submit" disabled={submission === "sending"} aria-describedby="contact-form-help">{submission === "sending" ? "Sending…" : "Send message"} <ArrowUpRight size={18} /></button><p role="status" aria-live="polite" className={submission === "error" ? "text-sm text-red-300" : "text-sm text-[#f7f7f4]/70"}>{submissionMessage}</p></form></section>}
 

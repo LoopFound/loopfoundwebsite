@@ -6,9 +6,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import SEOHead from "./SEOHead";
-import projectLoopFound from "@/assets/project-loopfound.png";
-import projectHaaniya from "@/assets/project-haaniya.png";
-import projectDhc from "@/assets/project-dhc.png";
+import projectLoopFound640 from "@/assets/project-loopfound-640.webp";
+import projectLoopFound1280 from "@/assets/project-loopfound-1280.webp";
+import projectHaaniya640 from "@/assets/project-haaniya-640.webp";
+import projectHaaniya1280 from "@/assets/project-haaniya-1280.webp";
+import projectDhc640 from "@/assets/project-dhc-640.webp";
+import projectDhc1280 from "@/assets/project-dhc-1280.webp";
 
 const services = [
   ["WEBSITE DESIGN", "Clear, memorable websites that make the right first impression and give visitors a reason to act."],
@@ -18,10 +21,10 @@ const services = [
 ];
 
 const projects = [
-  { name: "Loop Found", type: "Studio website", image: projectLoopFound, link: "https://loopfound.in/", caseStudy: "/projects/loop-found" },
-  { name: "Haaniya Online Education", type: "Education platform", image: projectHaaniya, link: "https://haaniyaonline4u.com/", caseStudy: "/projects/haaniya-online-education" },
-  { name: "St. Britto's Academy", type: "Institutional website", image: null, link: "https://stbrittosacademy.in/", caseStudy: "/projects/st-brittos-academy" },
-  { name: "Digital Horizon Conclave", type: "Event platform", image: projectDhc, link: "https://digital-horizon-conclave-2026.vercel.app/", caseStudy: "/projects/digital-horizon-conclave" },
+  { name: "Loop Found", type: "Studio website", image: projectLoopFound640, imageLarge: projectLoopFound1280, width: 640, height: 368, link: "https://loopfound.in/", caseStudy: "/projects/loop-found" },
+  { name: "Haaniya Online Education", type: "Education platform", image: projectHaaniya640, imageLarge: projectHaaniya1280, width: 640, height: 368, link: "https://haaniyaonline4u.com/", caseStudy: "/projects/haaniya-online-education" },
+  { name: "St. Britto's Academy", type: "Institutional website", image: null, imageLarge: null, width: 0, height: 0, link: "https://stbrittosacademy.in/", caseStudy: "/projects/st-brittos-academy" },
+  { name: "Digital Horizon Conclave", type: "Event platform", image: projectDhc640, imageLarge: projectDhc1280, width: 640, height: 340, link: "https://digital-horizon-conclave-2026.vercel.app/", caseStudy: "/projects/digital-horizon-conclave" },
 ];
 
 const heroWords = [
@@ -46,6 +49,7 @@ const AdkoHome = () => {
   useIsomorphicLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isMobile = window.matchMedia("(max-width: 767px)").matches;
     if (prefersReducedMotion || !pageRef.current || !heroRef.current) return;
 
     const context = gsap.context(() => {
@@ -57,10 +61,10 @@ const AdkoHome = () => {
       gsap.set(words, { autoAlpha: 0, yPercent: 28, rotationX: 90, transformPerspective: 900, transformOrigin: "50% 100%" });
       gsap.set(words[0], { autoAlpha: 1, yPercent: 0, rotationX: 0 });
 
-      gsap.timeline({ defaults: { ease: "power4.out" } })
+      const entrance = gsap.timeline({ defaults: { ease: "power4.out" } })
         .fromTo(words[0], { yPercent: 28, rotationX: 90, autoAlpha: 0 }, { yPercent: 0, rotationX: 0, autoAlpha: 1, duration: 0.85 })
-        .from(".js-hero-copy", { y: 30, opacity: 0, duration: 0.6 }, "-=0.55")
-        .from(".js-card-entrance", { y: 90, opacity: 0, duration: 0.9, stagger: 0.1 }, "-=0.55");
+        .from(".js-hero-copy", { y: 30, opacity: 0, duration: 0.6 }, "-=0.55");
+      if (!isMobile) entrance.from(".js-card-entrance", { y: 90, opacity: 0, duration: 0.9, stagger: 0.1 }, "-=0.55");
 
       const wordTimeline = gsap.timeline({ repeat: -1, repeatDelay: 0.15, delay: 2.6 });
       words.forEach((word, index) => {
@@ -74,6 +78,7 @@ const AdkoHome = () => {
       // separate elements so no animation can overwrite another's transform.
       const media = gsap.matchMedia();
       media.add("(min-width: 768px)", () => {
+        if (!rail) return;
         const heroScroll = gsap.timeline({
           scrollTrigger: {
             trigger: hero, start: "top top", end: "+=70%", scrub: 0.7,
@@ -84,10 +89,11 @@ const AdkoHome = () => {
           .fromTo(rail, { rotationX: 6, rotationY: -5, rotationZ: -8, xPercent: 0, yPercent: 0 }, {
             rotationX: 3, rotationY: 5, rotationZ: -3, xPercent: -3, yPercent: -72,
             duration: 1, ease: "none",
-          }, 0)
-          .to(copy, { y: -36, opacity: 0, duration: 0.3, ease: "none" }, 0);
+          }, 0);
+        if (copy) heroScroll.to(copy, { y: -36, opacity: 0, duration: 0.3, ease: "none" }, 0);
       });
       media.add("(max-width: 767px)", () => {
+        if (!rail) return;
         gsap.fromTo(rail, { rotationX: 5, rotationY: -5, rotationZ: -8, xPercent: 0, yPercent: 0 }, {
           xPercent: -7, yPercent: -30, rotationY: 4, rotationZ: -3, ease: "none",
           scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: 0.6 },
@@ -107,14 +113,6 @@ const AdkoHome = () => {
         scrollTrigger: { trigger: ".js-manifesto", start: "top top", end: "bottom top", scrub: 0.7 },
         yPercent: -12,
         ease: "none",
-      });
-
-      gsap.from(".js-expertise-intro", {
-        scrollTrigger: { trigger: ".js-expertise", start: "top 78%" },
-        y: 34,
-        opacity: 0,
-        duration: 0.7,
-        ease: "power3.out",
       });
 
       gsap.from(".js-expertise-heading", {
@@ -210,7 +208,7 @@ const AdkoHome = () => {
                 className="adko-project-card group"
                 aria-label={`View ${project.name} website (opens in new tab)`}
               >
-                {project.image ? <img src={project.image} alt={`${project.name} project`} className="adko-card-image" /> : <div className="adko-preview-placeholder"><span>Institutional website</span><strong>St. Britto's<br />Academy</strong><span>Project preview coming soon</span></div>}
+                {project.image ? <img src={project.image} srcSet={`${project.image} 640w, ${project.imageLarge} 1280w`} sizes="(max-width: 767px) 58vw, 28vw" width={project.width} height={project.height} loading={project.name === "Haaniya Online Education" ? "eager" : "lazy"} fetchpriority={project.name === "Haaniya Online Education" ? "high" : "auto"} decoding="async" alt={`${project.name} project`} className="adko-card-image" /> : <div className="adko-preview-placeholder"><span>Institutional website</span><strong>St. Britto's<br />Academy</strong><span>Project preview coming soon</span></div>}
                 <span className="adko-card-caption">
                   {project.name} <ArrowUpRight size={13} />
                 </span>
@@ -273,7 +271,7 @@ const AdkoHome = () => {
                   className={`js-work-card group overflow-hidden rounded-2xl bg-[#252525] ${index === 0 ? "md:col-span-2" : ""}`}
                 >
                   <div className={`overflow-hidden ${index === 0 ? "aspect-[2/1]" : "aspect-[4/3]"}`}>
-                    {project.image ? <img src={project.image} alt={project.name} loading="lazy" decoding="async" className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105" /> : <div className="adko-preview-placeholder"><span>Institutional website</span><strong>St. Britto's Academy</strong><span>Project preview coming soon</span></div>}
+                    {project.image ? <img src={project.image} srcSet={`${project.image} 640w, ${project.imageLarge} 1280w`} sizes={index === 0 ? "100vw" : "(max-width: 767px) 100vw, 50vw"} width={project.width} height={project.height} alt={project.name} loading="lazy" decoding="async" className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105" /> : <div className="adko-preview-placeholder"><span>Institutional website</span><strong>St. Britto's Academy</strong><span>Project preview coming soon</span></div>}
                   </div>
                   <div className="flex items-center justify-between p-6 md:p-8">
                     <div>
