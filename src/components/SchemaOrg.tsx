@@ -18,7 +18,7 @@ const organizationSchema = {
   image: "https://www.loopfound.in/images/loopfound-logo.jpg",
   description: "Loop Found is a web development agency that designs and builds conversion-focused websites, custom UI/UX, and web applications for growing businesses.",
   telephone: "+91-6379586015",
-  email: "teamloopfound@gmail.com",
+  email: ["team@loopfound.in", "teamloopfound@gmail.com"],
   address: {
     "@type": "PostalAddress",
     addressLocality: "Chennai",
@@ -35,7 +35,7 @@ const organizationSchema = {
     "@type": "ContactPoint",
     contactType: "customer service",
     url: "https://www.loopfound.in/contact",
-    email: "teamloopfound@gmail.com",
+    email: ["team@loopfound.in", "teamloopfound@gmail.com"],
     telephone: "+91-6379586015",
   },
   sameAs: ["https://www.instagram.com/teamloopfound"],

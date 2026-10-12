@@ -109,5 +109,5 @@ The contact form currently shows a success notification and clears the entered v
 ## Contact
 
 - Website: [loopfound.in](https://www.loopfound.in)
-- Email: [teamloopfound@gmail.com](mailto:teamloopfound@gmail.com)
+- Email: [team@loopfound.in](mailto:team@loopfound.in), [teamloopfound@gmail.com](mailto:teamloopfound@gmail.com)
 - Instagram: [@teamloopfound](https://www.instagram.com/teamloopfound)

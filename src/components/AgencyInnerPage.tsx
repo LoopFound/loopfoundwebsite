@@ -32,6 +32,7 @@ const data: Record<PageKind, { label: string; title: React.ReactNode; lede: stri
 };
 
 const contactLinks = [
+  { icon: Mail, label: "team@loopfound.in", href: "mailto:team@loopfound.in" },
   { icon: Mail, label: "teamloopfound@gmail.com", href: "mailto:teamloopfound@gmail.com" },
   { icon: Phone, label: "+91 6379586015", href: "tel:+916379586015" },
   { icon: Instagram, label: "@teamloopfound", href: "https://instagram.com/teamloopfound" },

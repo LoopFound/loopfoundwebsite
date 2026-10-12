@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 const contactInfo = [
+  { icon: Mail, label: "team@loopfound.in", href: "mailto:team@loopfound.in" },
   { icon: Mail, label: "teamloopfound@gmail.com", href: "mailto:teamloopfound@gmail.com" },
   { icon: Phone, label: "+91 6379586015", href: "tel:+916379586015" },
   { icon: Phone, label: "+91 8148448835", href: "tel:+918148448835" },
