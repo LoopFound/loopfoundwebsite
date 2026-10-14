@@ -34,7 +34,7 @@ const Navbar = () => {
         }`}
       >
         <div className="container max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between">
-          {/* Logo on Left - Stacked bold uppercase letters like AD.KO. */}
+          {/* Full brand mark, kept at its native ratio so the artwork is never cropped. */}
           <Link
             to="/"
             onClick={(e) => {
@@ -43,20 +43,16 @@ const Navbar = () => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }
             }}
-            className="group flex items-center gap-3 text-left"
+            className="group inline-flex items-center rounded-[14px] border border-black/10 bg-[#07172d] p-1.5 shadow-[0_5px_18px_rgba(7,23,45,0.16)] outline-none transition-[transform,box-shadow,border-color] duration-300 hover:-translate-y-0.5 hover:border-primary/60 hover:shadow-[0_8px_24px_rgba(7,23,45,0.22)] focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             aria-label="Loop Found home"
           >
             <img
               src="/images/loopfound-logo-256.webp"
-              alt="Loop Found"
-              width="44"
-              height="44"
-              className="h-[38px] w-[38px] rounded-lg object-cover shadow-sm transition-transform duration-300 group-hover:scale-105"
+              alt=""
+              width="256"
+              height="144"
+              className="h-10 w-auto rounded-[9px] object-contain"
             />
-            <span className="adko-display text-2xl font-bold tracking-tight text-[#151515] leading-[0.85] flex flex-col">
-              <span>LOOP.</span>
-              <span>FOUND.</span>
-            </span>
           </Link>
 
           {/* Nav Links in Center */}
