@@ -12,6 +12,7 @@ import projectHaaniya640 from "@/assets/project-haaniya-640.webp";
 import projectHaaniya1280 from "@/assets/project-haaniya-1280.webp";
 import projectDhc640 from "@/assets/project-dhc-640.webp";
 import projectDhc1280 from "@/assets/project-dhc-1280.webp";
+import projectBrittos from "@/assets/project-brittos.jpg";
 import { projectPages, servicePages } from "@/data/seoPages";
 
 type PageKind = "about" | "services" | "projects" | "contact" | "referral" | "sitemap";
@@ -19,6 +20,7 @@ type PageKind = "about" | "services" | "projects" | "contact" | "referral" | "si
 const projects = [
   { name: "Loop Found", type: "Studio website", image: projectLoopFound640, imageLarge: projectLoopFound1280, width: 640, height: 368, path: "/projects/loop-found" },
   { name: "Haaniya Online Education", type: "Education platform", image: projectHaaniya640, imageLarge: projectHaaniya1280, width: 640, height: 368, path: "/projects/haaniya-online-education" },
+  { name: "St. Britto's Academy", type: "Institutional website", image: projectBrittos, imageLarge: projectBrittos, width: 1200, height: 650, path: "/projects/st-brittos-academy" },
   { name: "Digital Horizon Conclave", type: "Event platform", image: projectDhc640, imageLarge: projectDhc1280, width: 640, height: 340, path: "/projects/digital-horizon-conclave" },
 ];
 

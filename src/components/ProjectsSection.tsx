@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import projectLoopFound from "@/assets/project-loopfound.png";
 import projectHaaniya from "@/assets/project-haaniya.png";
 
-import projectBrittos from "@/assets/project-brittos.png";
+import projectBrittos from "@/assets/project-brittos.jpg";
 import projectDhc from "@/assets/project-dhc.png";
 
 const projects = [
@@ -34,7 +34,7 @@ const projects = [
     tag: "Institutional",
     services: ["Information design", "Responsive build", "Launch"],
     image: projectBrittos,
-    link: "https://stbrittosacademy.in/",
+    link: "https://st-brittos-academy.netlify.app/",
   },
   {
     name: "Digital Horizon Conclave 2026",

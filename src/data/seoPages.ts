@@ -75,7 +75,7 @@ export const projectPages = [
     description: "View St. Britto's Academy in Loop Found's institutional website portfolio.",
     summary: "An institutional website project focused on making academy information and its digital presence easier to discover and navigate.",
     services: ["Institutional website", "Responsive development", "Information structure"],
-    liveUrl: "https://stbrittosacademy.in/",
+    liveUrl: "https://st-brittos-academy.netlify.app/",
   },
   {
     slug: "digital-horizon-conclave",
