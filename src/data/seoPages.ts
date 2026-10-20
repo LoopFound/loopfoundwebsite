@@ -55,7 +55,7 @@ export const projectPages = [
     description: "Explore Loop Found's own agency website, combining brand positioning, responsive design, frontend development and referral journeys.",
     summary: "Our studio website brings Loop Found's positioning, services, selected work, team, contact flow, and referral program into one responsive experience.",
     services: ["Brand positioning", "UI/UX design", "Frontend development", "Technical SEO"],
-    liveUrl: "https://www.loopfound.in/",
+    liveUrl: "https://loopfound.in/",
   },
   {
     slug: "haaniya-online-education",
