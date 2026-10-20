@@ -6,8 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import SEOHead from "./SEOHead";
-import projectLoopFound640 from "@/assets/project-loopfound-640.webp";
-import projectLoopFound1280 from "@/assets/project-loopfound-1280.webp";
+import projectLoopFoundCurrent from "@/assets/project-loopfound-current.png";
 import projectHaaniya640 from "@/assets/project-haaniya-640.webp";
 import projectHaaniya1280 from "@/assets/project-haaniya-1280.webp";
 import projectDhc640 from "@/assets/project-dhc-640.webp";
@@ -18,7 +17,7 @@ import { projectPages, servicePages } from "@/data/seoPages";
 type PageKind = "about" | "services" | "projects" | "contact" | "referral" | "sitemap";
 
 const projects = [
-  { name: "Loop Found", type: "Studio website", image: projectLoopFound640, imageLarge: projectLoopFound1280, width: 640, height: 368, path: "/projects/loop-found" },
+  { name: "Loop Found", type: "Studio website", image: projectLoopFoundCurrent, imageLarge: projectLoopFoundCurrent, width: 1280, height: 720, path: "/projects/loop-found" },
   { name: "Haaniya Online Education", type: "Education platform", image: projectHaaniya640, imageLarge: projectHaaniya1280, width: 640, height: 368, path: "/projects/haaniya-online-education" },
   { name: "St. Britto's Academy", type: "Institutional website", image: projectBrittos, imageLarge: projectBrittos, width: 1200, height: 650, path: "/projects/st-brittos-academy" },
   { name: "Digital Horizon Conclave", type: "Event platform", image: projectDhc640, imageLarge: projectDhc1280, width: 640, height: 340, path: "/projects/digital-horizon-conclave" },
