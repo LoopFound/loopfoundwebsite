@@ -29,3 +29,17 @@ The source logo is a horizontal wordmark. Showing the whole asset makes the bran
 ### Why this method over alternatives
 
 Existing Tailwind utilities provide sizing, focus treatment, and interaction states without new CSS or dependencies. `object-contain` and the image's real dimensions preserve the artwork better than `object-cover`, a circular crop, or a recreated text logo.
+
+## 2026-10-21 — Route unknown member slugs to the site-wide 404 page
+
+### What changed
+
+Replaced the separate member-not-found screen with the shared `NotFound` page and added a routing regression test for unknown single-segment URLs.
+
+### Why this approach
+
+The dynamic `/:memberSlug` route matches every single-segment URL before the wildcard route can handle it. Delegating unresolved member slugs to the shared 404 component gives every unknown URL the same user experience and no-index metadata while preserving valid member aliases.
+
+### Why this method over alternatives
+
+Reusing the existing `NotFound` component keeps 404 ownership in one place and avoids duplicating route lists or member aliases in `App.tsx`. Enumerating each profile path would make routing depend on a second manually maintained copy of the team data.

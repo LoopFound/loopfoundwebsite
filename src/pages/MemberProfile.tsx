@@ -1,9 +1,8 @@
 import { useMemo } from "react";
-import { useParams, Link, Navigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import {
   ArrowUpRight,
-  ArrowLeft,
   Mail,
   Linkedin,
   Github,
@@ -19,6 +18,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import { getMemberBySlug, teamMembers } from "@/data/team";
+import NotFound from "./NotFound";
 
 const MemberProfile = () => {
   const { memberSlug } = useParams<{ memberSlug: string }>();
@@ -28,46 +28,9 @@ const MemberProfile = () => {
   }, [memberSlug]);
 
   if (!member) {
-    return (
-      <div className="min-h-screen bg-[#151515] text-[#f7f7f4] flex flex-col justify-between">
-        <SEOHead
-          title="Team Member Not Found — Loop Found"
-          description="The requested team member profile could not be found."
-          path="/about"
-          noIndex
-        />
-        <Navbar />
-        <main className="container px-4 py-32 flex-1 flex flex-col items-center justify-center text-center">
-          <p className="text-primary text-xs font-mono uppercase tracking-[0.25em] mb-4">
-            Loop Found Team
-          </p>
-          <h1 className="adko-display text-5xl md:text-7xl font-extrabold mb-6">
-            MEMBER NOT FOUND
-          </h1>
-          <p className="text-[#f7f7f4]/70 max-w-md mb-8">
-            The profile for "{memberSlug}" does not exist or has moved. Explore our core team on our about page.
-          </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link
-              to="/about"
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-bold text-primary-foreground hover:opacity-90 transition-opacity"
-            >
-              <ArrowLeft size={16} /> View All Team Members
-            </Link>
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-bold text-white hover:bg-white/10 transition-colors"
-            >
-              Back to Home
-            </Link>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
+    return <NotFound />;
   }
 
-  // Canonical casing redirect: if user types /gopinath, keep URL clean or match
   const otherMembers = teamMembers.filter((m) => m.slug !== member.slug);
 
   const jsonLd = {
