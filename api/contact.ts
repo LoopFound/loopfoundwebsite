@@ -10,6 +10,43 @@ const getHeader = (headers: RequestLike["headers"], name: string) => {
   return Array.isArray(value) ? value[0] : value;
 };
 
+// Vercel overwrites x-real-ip / x-vercel-forwarded-for with the true client IP;
+// x-forwarded-for can carry client-supplied values, so it is only a last resort.
+const getClientIp = (headers: RequestLike["headers"]) =>
+  getHeader(headers, "x-real-ip") ??
+  getHeader(headers, "x-vercel-forwarded-for")?.split(",")[0]?.trim() ??
+  getHeader(headers, "x-forwarded-for")?.split(",").pop()?.trim() ??
+  "unknown";
+
+const localLimited = (ip: string) => {
+  const now = Date.now();
+  const recent = (requests.get(ip) ?? []).filter((timestamp) => now - timestamp < WINDOW_MS);
+  if (recent.length >= MAX_REQUESTS) return true;
+  requests.set(ip, [...recent, now]);
+  return false;
+};
+
+// Shared limit across serverless instances via Upstash Redis REST when configured;
+// falls back to the per-instance map if it is unset or unreachable.
+const isRateLimited = async (ip: string) => {
+  const url = process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
+  if (!url || !token) return localLimited(ip);
+  try {
+    const key = `contact:${ip}`;
+    const result = await fetch(`${url}/pipeline`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
+      body: JSON.stringify([["INCR", key], ["EXPIRE", key, String(WINDOW_MS / 1000), "NX"]]),
+    });
+    if (!result.ok) return localLimited(ip);
+    const [count] = (await result.json()) as Array<{ result?: number }>;
+    return typeof count?.result === "number" ? count.result > MAX_REQUESTS : localLimited(ip);
+  } catch {
+    return localLimited(ip);
+  }
+};
+
 const escapeHtml = (value: string) => value.replace(/[&<>'"]/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[character] ?? character);
 
 export default async function handler(request: RequestLike, response: ResponseLike) {
@@ -21,18 +58,19 @@ export default async function handler(request: RequestLike, response: ResponseLi
     return;
   }
 
-  const origin = getHeader(request.headers, "origin");
+  // Browsers always send Origin (or at least Referer) on a cross-site or fetch POST,
+  // so a request carrying neither is not a legitimate form submission and is rejected.
   const host = getHeader(request.headers, "host");
-  if (origin && host) {
-    try {
-      if (new URL(origin).host !== host) {
-        response.status(403).json({ error: "Request origin is not allowed." });
-        return;
-      }
-    } catch {
-      response.status(403).json({ error: "Request origin is not allowed." });
-      return;
-    }
+  const source = getHeader(request.headers, "origin") ?? getHeader(request.headers, "referer");
+  let sourceHost: string | undefined;
+  try {
+    sourceHost = source ? new URL(source).host : undefined;
+  } catch {
+    sourceHost = undefined;
+  }
+  if (!host || !sourceHost || sourceHost !== host) {
+    response.status(403).json({ error: "Request origin is not allowed." });
+    return;
   }
 
   const body = request.body as Record<string, unknown> | undefined;
@@ -51,14 +89,10 @@ export default async function handler(request: RequestLike, response: ResponseLi
     return;
   }
 
-  const ip = getHeader(request.headers, "x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
-  const now = Date.now();
-  const recent = (requests.get(ip) ?? []).filter((timestamp) => now - timestamp < WINDOW_MS);
-  if (recent.length >= MAX_REQUESTS) {
+  if (await isRateLimited(getClientIp(request.headers))) {
     response.status(429).json({ error: "Please wait before sending another message." });
     return;
   }
-  requests.set(ip, [...recent, now]);
 
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL;

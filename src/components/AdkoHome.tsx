@@ -196,7 +196,7 @@ const AdkoHome = () => {
             </p>
           </div>
 
-          <div className="adko-project-stage" aria-label="Featured website projects">
+          <div className="adko-project-stage" role="region" aria-label="Featured website projects">
           <div className="js-project-rail adko-project-rail">
             {projects.map((project) => (
               <div className="js-card-entrance adko-card-entrance" key={project.name}>
