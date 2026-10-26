@@ -14,6 +14,8 @@ export interface MemberProject {
 export interface TeamMember {
   slug: string;
   aliases: string[];
+  /** Set when the profile lives off-site; /:slug redirects there instead of rendering. */
+  profileUrl?: string;
   name: string;
   role: string;
   kicker: string;
@@ -254,6 +256,7 @@ export const teamMembers: TeamMember[] = [
   {
     slug: "SaiCharan",
     aliases: ["saicharan", "SaiCharan", "sai-charan", "sai"],
+    profileUrl: "https://charan.loopfound.in/",
     name: "Sai Charan",
     role: "Backend Developer",
     kicker: "Systems & Cloud Engineering",
@@ -360,6 +363,9 @@ export const teamMembers: TeamMember[] = [
     }
   }
 ];
+
+export const memberProfileUrl = (member: TeamMember) =>
+  member.profileUrl ?? `/${member.slug}`;
 
 export function getMemberBySlug(slug: string): TeamMember | undefined {
   if (!slug) return undefined;

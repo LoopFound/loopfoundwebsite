@@ -5,7 +5,7 @@ const personReference = (member: (typeof teamMembers)[number]) => ({
   "@type": "Person",
   name: member.name,
   jobTitle: member.role,
-  url: `https://www.loopfound.in/${member.slug}`,
+  url: member.profileUrl ?? `https://www.loopfound.in/${member.slug}`,
   sameAs: member.socials.linkedin ? [member.socials.linkedin] : [],
 });
 

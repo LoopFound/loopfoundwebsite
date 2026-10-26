@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getMemberBySlug, teamMembers } from "../data/team";
+import { getMemberBySlug, memberProfileUrl, teamMembers } from "../data/team";
 
 describe("team member data & slug resolution", () => {
   it("resolves Gopinath via various cases and aliases", () => {
@@ -30,6 +30,12 @@ describe("team member data & slug resolution", () => {
 
     expect(getMemberBySlug("saicharan")?.name).toBe("Sai Charan");
     expect(getMemberBySlug("sai-charan")?.name).toBe("Sai Charan");
+  });
+
+  it("sends Sai Charan to his off-site profile", () => {
+    const member = getMemberBySlug("SaiCharan");
+    expect(member?.profileUrl).toBe("https://charan.loopfound.in/");
+    expect(member && memberProfileUrl(member)).toBe("https://charan.loopfound.in/");
   });
 
   it("returns undefined for unknown member slugs", () => {

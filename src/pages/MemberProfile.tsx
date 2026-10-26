@@ -17,7 +17,7 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
-import { getMemberBySlug, teamMembers } from "@/data/team";
+import { getMemberBySlug, memberProfileUrl, teamMembers } from "@/data/team";
 import NotFound from "./NotFound";
 
 const MemberProfile = () => {
@@ -26,6 +26,11 @@ const MemberProfile = () => {
   const member = useMemo(() => {
     return memberSlug ? getMemberBySlug(memberSlug) : undefined;
   }, [memberSlug]);
+
+  if (member?.profileUrl) {
+    if (typeof window !== "undefined") window.location.replace(member.profileUrl);
+    return null;
+  }
 
   if (!member) {
     return <NotFound />;
@@ -414,9 +419,9 @@ const MemberProfile = () => {
 
             <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
               {otherMembers.map((om) => (
-                <Link
+                <a
                   key={om.slug}
-                  to={`/${om.slug}`}
+                  href={memberProfileUrl(om)}
                   className="group block rounded-2xl border border-[#151515]/10 bg-white p-6 hover:border-primary transition-all hover:shadow-md"
                 >
                   <div className="flex items-center justify-between mb-4">
@@ -433,7 +438,7 @@ const MemberProfile = () => {
                   <p className="text-xs text-[#151515]/70 line-clamp-2 leading-relaxed">
                     {om.tagline}
                   </p>
-                </Link>
+                </a>
               ))}
             </div>
           </div>

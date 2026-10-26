@@ -3,7 +3,9 @@
   "redirects": [
     { "source": "/gopinath", "destination": "/Gopinath", "permanent": true },
     { "source": "/pranith", "destination": "/Pranith", "permanent": true },
-    { "source": "/saicharan", "destination": "/SaiCharan", "permanent": true }
+    { "source": "/SaiCharan", "destination": "https://charan.loopfound.in/", "permanent": true },
+    { "source": "/saicharan", "destination": "https://charan.loopfound.in/", "permanent": true },
+    { "source": "/sai-charan", "destination": "https://charan.loopfound.in/", "permanent": true }
   ],
   "headers": [
     {

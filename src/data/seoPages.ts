@@ -91,7 +91,7 @@ export const projectPages = [
 
 export const canonicalRoutes = [
   "/", "/about", "/services", "/projects", "/contact", "/referral", "/sitemap", "/privacy", "/terms",
-  "/Gopinath", "/Pranith", "/SaiCharan",
+  "/Gopinath", "/Pranith",
   ...servicePages.map((service) => `/services/${service.slug}`),
   ...projectPages.map((project) => `/projects/${project.slug}`),
 ];
