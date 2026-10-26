@@ -1,4 +1,5 @@
 {
+  "installCommand": "npm ci",
   "redirects": [
     { "source": "/gopinath", "destination": "/Gopinath", "permanent": true },
     { "source": "/pranith", "destination": "/Pranith", "permanent": true },

@@ -6,7 +6,8 @@ import { componentTagger } from "lovable-tagger";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode, isSsrBuild }) => ({
   server: {
-    host: "::",
+    // Localhost only by default; run `npm run dev:lan` to expose to the network.
+    host: process.env.VITE_DEV_HOST ?? "localhost",
     port: 8080,
     hmr: {
       overlay: false,

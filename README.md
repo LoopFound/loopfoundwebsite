@@ -52,8 +52,10 @@ The site includes:
 ```bash
 git clone https://github.com/goprocker/loopfoundwebsite.git
 cd loopfoundwebsite
-npm install
+npm ci
 ```
+
+npm is the authoritative package manager; `package-lock.json` is the only lockfile. Use `npm ci` for clean, reproducible installs.
 
 ### Local development
 
@@ -61,13 +63,14 @@ npm install
 npm run dev
 ```
 
-The development server runs at `http://localhost:8080` by default.
+The development server runs at `http://localhost:8080` and listens on localhost only. To test from other devices on your LAN, run `npm run dev:lan` (or set `VITE_DEV_HOST`).
 
 ## Available commands
 
 | Command | Purpose |
 | --- | --- |
-| `npm run dev` | Start the Vite development server |
+| `npm run dev` | Start the Vite development server (localhost only) |
+| `npm run dev:lan` | Start the development server on all interfaces for LAN testing |
 | `npm run build` | Create a production build |
 | `npm run build:dev` | Create a development-mode build |
 | `npm run preview` | Preview the production build locally |
