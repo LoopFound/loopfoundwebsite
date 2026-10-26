@@ -1,4 +1,5 @@
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { useCallback, useState } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
@@ -47,7 +48,7 @@ export const AppContent = () => {
               <Route path="/:memberSlug" element={<MemberProfile />} />
               <Route path="*" element={<NotFound />} />
         </Routes>
-        {import.meta.env.PROD && analyticsConsent ? <Analytics /> : null}
+        {import.meta.env.PROD && analyticsConsent ? <><Analytics /><SpeedInsights /></> : null}
         <AnalyticsConsent onChange={handleAnalyticsConsent} />
       </TooltipProvider>
     </QueryClientProvider>;
