@@ -2,9 +2,10 @@ import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router-dom";
 import { HelmetProvider, type HelmetServerState } from "react-helmet-async";
 import { AppContent } from "./App";
-import { canonicalRoutes } from "./data/seoPages";
+import { canonicalRoutes, sitemapUrls } from "./data/seoPages";
 
 export const routes = canonicalRoutes;
+export { sitemapUrls };
 
 export const render = (url: string) => {
   const helmetContext: { helmet?: HelmetServerState } = {};

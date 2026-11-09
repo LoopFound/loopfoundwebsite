@@ -12,7 +12,7 @@ import projectHaaniya1280 from "@/assets/project-haaniya-1280.webp";
 import projectDhc640 from "@/assets/project-dhc-640.webp";
 import projectDhc1280 from "@/assets/project-dhc-1280.webp";
 import projectBrittos from "@/assets/project-brittos.jpg";
-import { projectPages, servicePages } from "@/data/seoPages";
+import { networkSites, projectPages, servicePages } from "@/data/seoPages";
 
 type PageKind = "about" | "services" | "projects" | "contact" | "referral" | "sitemap";
 
@@ -129,6 +129,13 @@ const AgencyInnerPage = ({ page }: { page: PageKind }) => {
                 <li><Link to="/Pranith" className="hover:text-primary transition-colors flex items-center justify-between"><span>Pranith Vincent — CEO & Founder</span> <ArrowUpRight size={16} /></Link></li>
                 <li><Link to="/Gopinath" className="hover:text-primary transition-colors flex items-center justify-between"><span>Gopinath — Co-Founder & CMO</span> <ArrowUpRight size={16} /></Link></li>
                 <li><a href="https://charan.loopfound.in/" className="hover:text-primary transition-colors flex items-center justify-between"><span>Sai Charan — Backend Developer</span> <ArrowUpRight size={16} /></a></li>
+              </ul>
+            </div>
+
+            <div className="js-inner-reveal">
+              <h2 className="adko-display text-2xl font-bold mb-6 text-[#151515]">LOOP FOUND NETWORK</h2>
+              <ul className="space-y-4 text-base font-semibold text-[#151515]/80">
+                {networkSites.map((site) => <li key={site.url}><a href={site.url} target="_blank" rel="noreferrer" className="hover:text-primary transition-colors flex items-center justify-between gap-4"><span>{site.name}<small className="block mt-1 font-normal text-[#151515]/60">{site.description}</small></span><ArrowUpRight size={16} className="shrink-0" /></a></li>)}
               </ul>
             </div>
 

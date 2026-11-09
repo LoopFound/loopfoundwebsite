@@ -89,9 +89,32 @@ export const projectPages = [
   },
 ] as const;
 
+export const networkSites = [
+  {
+    name: "Gopinath R",
+    description: "Full-stack and AI engineer portfolio",
+    url: "https://gopinath.loopfound.in/",
+  },
+  {
+    name: "Sai Charan Meda",
+    description: "Software and AI engineer portfolio",
+    url: "https://charan.loopfound.in/",
+  },
+  {
+    name: "Islet",
+    description: "Dynamic Island for Windows",
+    url: "https://islet.loopfound.in/",
+  },
+] as const;
+
 export const canonicalRoutes = [
   "/", "/about", "/services", "/projects", "/contact", "/referral", "/sitemap", "/privacy", "/terms",
   "/Gopinath", "/Pranith",
   ...servicePages.map((service) => `/services/${service.slug}`),
   ...projectPages.map((project) => `/projects/${project.slug}`),
+];
+
+export const sitemapUrls = [
+  ...canonicalRoutes.map((route) => `https://www.loopfound.in${route}`),
+  ...networkSites.map((site) => site.url),
 ];

@@ -2,10 +2,9 @@ import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 
-const siteUrl = "https://www.loopfound.in";
 const dist = resolve("dist");
 const serverBundle = resolve("dist-ssr/entry-server.js");
-const { render, routes } = await import(pathToFileURL(serverBundle).href);
+const { render, routes, sitemapUrls } = await import(pathToFileURL(serverBundle).href);
 const template = await readFile(resolve(dist, "index.html"), "utf8");
 
 const helmetMarkup = (helmet) => [
@@ -32,13 +31,9 @@ for (const route of routes) {
 
 await renderPage("/404", resolve(dist, "404.html"));
 
-const lastModified = new Date().toISOString().slice(0, 10);
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${routes.map((route) => `  <url>
-    <loc>${siteUrl}${route}</loc>
-    <lastmod>${lastModified}</lastmod>
-  </url>`).join("\n")}
+${sitemapUrls.map((url) => `  <url><loc>${url}</loc></url>`).join("\n")}
 </urlset>
 `;
 await writeFile(resolve(dist, "sitemap.xml"), sitemap);
