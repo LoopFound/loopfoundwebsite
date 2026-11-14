@@ -13,6 +13,8 @@ import projectDhc640 from "@/assets/project-dhc-640.webp";
 import projectDhc1280 from "@/assets/project-dhc-1280.webp";
 import projectBrittos from "@/assets/project-brittos.jpg";
 import { networkSites, projectPages, servicePages } from "@/data/seoPages";
+import { teamMembers } from "@/data/team";
+import { Helmet } from "react-helmet-async";
 
 type PageKind = "about" | "services" | "projects" | "contact" | "referral" | "sitemap";
 
@@ -37,8 +39,25 @@ const contactLinks = [
   { icon: Mail, label: "teamloopfound@gmail.com", href: "mailto:teamloopfound@gmail.com" },
   { icon: Phone, label: "+91 6379586015", href: "tel:+916379586015" },
   { icon: Instagram, label: "@teamloopfound", href: "https://instagram.com/teamloopfound" },
-  { icon: Globe, label: "loopfound.in", href: "https://loopfound.in" },
+  { icon: Globe, label: "loopfound.in", href: "https://www.loopfound.in/" },
 ];
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  url: "https://www.loopfound.in/about",
+  name: "About Loop Found",
+  about: { "@type": "Organization", name: "Loop Found", url: "https://www.loopfound.in" },
+  mentions: teamMembers.map((member) => ({
+    "@type": "Person",
+    name: member.name,
+    jobTitle: member.role,
+    description: member.tagline,
+    worksFor: { "@type": "Organization", name: "Loop Found", url: "https://www.loopfound.in" },
+    sameAs: [member.socials.linkedin, member.profileUrl?.endsWith("/about") ? undefined : member.profileUrl].filter(Boolean),
+    knowsAbout: member.skillCategories.flatMap((category) => category.skills).slice(0, 12),
+  })),
+};
 
 const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
 
@@ -86,6 +105,7 @@ const AgencyInnerPage = ({ page }: { page: PageKind }) => {
 
   return <div ref={pageRef} className={`agency-page agency-page--${content.tone} min-h-screen bg-[#f7f7f4] text-[#151515]`}>
     <SEOHead title={content.seo} description={content.description} path={`/${page === "about" ? "about" : page}`} />
+    {page === "about" && <Helmet><script type="application/ld+json">{JSON.stringify(aboutSchema)}</script></Helmet>}
     <Navbar />
     <main id="main-content">
       <section className="agency-inner-hero">
@@ -96,7 +116,8 @@ const AgencyInnerPage = ({ page }: { page: PageKind }) => {
 
       {page === "about" && <>
         <section className="agency-statement bg-[#151515] text-[#f7f7f4]"><div className="js-inner-reveal"><p className="agency-kicker text-primary">Our point of view</p><h2 className="adko-display">GOOD DESIGN<br />HAS A JOB.</h2><p>We do not use design to decorate a business. We use it to make the right people understand, trust, and choose it.</p></div></section>
-        <section className="agency-grid-section"><div className="js-inner-reveal agency-section-head"><p className="agency-kicker">People behind work</p><h2 className="adko-display">SMALL TEAM.<br />BIG INTENT.</h2></div><div className="agency-team-grid">{[["Pranith Vincent", "CEO & Founder", "Leads strategy and the long view behind every build.", "/Pranith"], ["Gopinath", "Co-Founder & CMO", "Shapes how good work meets the people it is made for.", "/Gopinath"], ["Sai Charan", "Backend Developer", "Builds reliable systems and integrations behind the experiences people use.", "https://charan.loopfound.in/"]].map(([name, role, text, path]) => <a href={path} key={name} className="js-inner-reveal agency-person group block transition-colors hover:bg-black/[0.02]"><span>{role}</span><h3 className="adko-display group-hover:text-primary transition-colors">{name}</h3><p>{text}</p><div className="mt-6 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-primary"><span>View Profile & Skills</span><ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" /></div></a>)}</div></section>
+        <section className="px-4 py-20 sm:px-6 md:py-28"><div className="container js-inner-reveal grid gap-10 md:grid-cols-[.8fr_1.2fr]"><div><p className="agency-kicker">Who we are</p><h2 className="adko-display mt-4 text-5xl leading-[.88]">WHAT IS LOOP FOUND?</h2></div><div className="space-y-5 text-lg leading-relaxed text-[#4b4b4b]"><p>Loop Found is a web design and development company based in Chennai, Tamil Nadu. A small founder-led team of three plans, designs, builds and launches business websites, web applications and landing pages for clients across India.</p><p>Our services cover web design, web development, UI/UX design, website redesign and technical SEO. Recent work includes an education platform (Haaniya Online Education), an institutional website (St. Britto&apos;s Academy) and an event platform (Digital Horizon Conclave).</p><p>Every project is handled directly by the people below, from the first call to launch and after.</p></div></div></section>
+        <section className="agency-grid-section"><div className="js-inner-reveal agency-section-head"><p className="agency-kicker">People behind work</p><h2 className="adko-display">SMALL TEAM.<br />BIG INTENT.</h2></div><div className="border-t border-black/20">{[...teamMembers].sort((a, b) => Number(b.role.startsWith("CEO")) - Number(a.role.startsWith("CEO"))).map((member) => { const external = member.profileUrl && !member.profileUrl.endsWith("/about"); return <article key={member.slug} className="js-inner-reveal grid gap-8 border-b border-black/20 py-12 md:grid-cols-[.8fr_1.2fr] md:py-16"><div><span className="text-[11px] font-extrabold uppercase tracking-[.14em]">{member.role}</span><h3 className="adko-display mt-4 text-[clamp(45px,5vw,76px)] leading-[.85]">{member.name}</h3><p className="mt-4 max-w-sm text-[#555]">{member.tagline}</p><div className="mt-6 flex flex-wrap gap-4 text-xs font-bold uppercase tracking-wider text-primary">{member.socials.linkedin && <a href={member.socials.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5">LinkedIn <ArrowUpRight size={14} /></a>}{external && <a href={member.profileUrl} className="inline-flex items-center gap-1.5">Full portfolio <ArrowUpRight size={14} /></a>}</div></div><div className="space-y-4 leading-relaxed text-[#4b4b4b]">{member.bio.map((line) => <p key={line}>{line}</p>)}<p className="pt-2 text-xs font-bold uppercase tracking-[.14em] text-[#151515]">Skills</p><ul className="flex flex-wrap gap-2">{member.skillCategories.flatMap((category) => category.skills).slice(0, 12).map((skill) => <li key={skill} className="rounded-full border border-black/15 px-3 py-1 text-sm">{skill}</li>)}</ul></div></article>; })}</div></section>
       </>}
 
       {page === "services" && <section className="agency-grid-section bg-[#f7f7f4]"><div className="agency-section-head js-inner-reveal"><p className="agency-kicker">What we make in Chennai</p><h2 className="adko-display">BUILT FOR<br />MOMENTUM.</h2></div><div className="agency-service-list">{servicePages.map((service, index) => <article key={service.slug} className="js-inner-reveal agency-service-row"><span>{String(index + 1).padStart(2, "0")}</span><h3 className="adko-display">{service.name}</h3><p>{service.intro}</p><Link to={`/services/${service.slug}`} aria-label={`Explore ${service.name}`}><ArrowUpRight /></Link></article>)}</div></section>}
@@ -126,8 +147,8 @@ const AgencyInnerPage = ({ page }: { page: PageKind }) => {
             <div className="js-inner-reveal">
               <h2 className="adko-display text-2xl font-bold mb-6 text-[#151515]">TEAM PROFILES</h2>
               <ul className="space-y-4 text-base font-semibold text-[#151515]/80">
-                <li><Link to="/Pranith" className="hover:text-primary transition-colors flex items-center justify-between"><span>Pranith Vincent — CEO & Founder</span> <ArrowUpRight size={16} /></Link></li>
-                <li><Link to="/Gopinath" className="hover:text-primary transition-colors flex items-center justify-between"><span>Gopinath — Co-Founder & CMO</span> <ArrowUpRight size={16} /></Link></li>
+                <li><Link to="/about" className="hover:text-primary transition-colors flex items-center justify-between"><span>Pranith Vincent — CEO & Founder</span> <ArrowUpRight size={16} /></Link></li>
+                <li><a href="https://gopinath.loopfound.in/" className="hover:text-primary transition-colors flex items-center justify-between"><span>Gopinath — Co-Founder & CMO</span> <ArrowUpRight size={16} /></a></li>
                 <li><a href="https://charan.loopfound.in/" className="hover:text-primary transition-colors flex items-center justify-between"><span>Sai Charan — Backend Developer</span> <ArrowUpRight size={16} /></a></li>
               </ul>
             </div>

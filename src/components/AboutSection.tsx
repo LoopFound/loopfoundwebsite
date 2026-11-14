@@ -7,7 +7,7 @@ const team = [
     name: "Pranith Vincent",
     role: "CEO & Founder",
     icon: Crown,
-    path: "/Pranith",
+    path: "/about",
     description:
       "Visionary leader driving Loop Found's mission to craft digital experiences that transform businesses. Passionate about clean design and scalable web solutions.",
   },

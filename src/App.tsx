@@ -15,7 +15,6 @@ import Contact from "./pages/Contact";
 import Referral from "./pages/Referral";
 import Sitemap from "./pages/Sitemap";
 import Legal from "./pages/Legal";
-import MemberProfile from "./pages/MemberProfile";
 import ServiceDetail from "./pages/ServiceDetail";
 import ProjectCaseStudy from "./pages/ProjectCaseStudy";
 import NotFound from "./pages/NotFound";
@@ -45,7 +44,6 @@ export const AppContent = () => {
               <Route path="/terms" element={<Legal page="terms" />} />
               <Route path="/services/:serviceSlug" element={<ServiceDetail />} />
               <Route path="/projects/:projectSlug" element={<ProjectCaseStudy />} />
-              <Route path="/:memberSlug" element={<MemberProfile />} />
               <Route path="*" element={<NotFound />} />
         </Routes>
         {import.meta.env.PROD && analyticsConsent ? <><Analytics /><SpeedInsights /></> : null}

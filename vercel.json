@@ -1,8 +1,14 @@
 {
   "installCommand": "npm ci",
+  "trailingSlash": false,
   "redirects": [
-    { "source": "/gopinath", "destination": "/Gopinath", "permanent": true },
-    { "source": "/pranith", "destination": "/Pranith", "permanent": true },
+    { "source": "/Gopinath", "destination": "https://gopinath.loopfound.in/", "permanent": true },
+    { "source": "/gopinath", "destination": "https://gopinath.loopfound.in/", "permanent": true },
+    { "source": "/gopi", "destination": "https://gopinath.loopfound.in/", "permanent": true },
+    { "source": "/Pranith", "destination": "/about", "permanent": true },
+    { "source": "/pranith", "destination": "/about", "permanent": true },
+    { "source": "/pranith-vincent", "destination": "/about", "permanent": true },
+    { "source": "/pranithvincent", "destination": "/about", "permanent": true },
     { "source": "/SaiCharan", "destination": "https://charan.loopfound.in/", "permanent": true },
     { "source": "/saicharan", "destination": "https://charan.loopfound.in/", "permanent": true },
     { "source": "/sai-charan", "destination": "https://charan.loopfound.in/", "permanent": true }

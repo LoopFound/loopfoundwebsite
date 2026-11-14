@@ -16,7 +16,7 @@ const projects = [
     tag: "Branding",
     services: ["Strategy", "UI/UX", "Development"],
     image: projectLoopFound,
-    link: "https://loopfound.in/",
+    link: "https://www.loopfound.in/",
   },
   {
     name: "Haaniya Online Education",

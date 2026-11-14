@@ -2,15 +2,15 @@ import { render, screen } from "@testing-library/react";
 import { HelmetProvider } from "react-helmet-async";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, expect, it } from "vitest";
-import MemberProfile from "../pages/MemberProfile";
+import NotFound from "../pages/NotFound";
 
 describe("top-level routing", () => {
-  it("renders the site-wide 404 page for an unknown member slug", () => {
+  it("renders the site-wide 404 page for an unknown path", () => {
     render(
       <HelmetProvider>
         <MemoryRouter initialEntries={["/missing-page"]}>
           <Routes>
-            <Route path="/:memberSlug" element={<MemberProfile />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </MemoryRouter>
       </HelmetProvider>,

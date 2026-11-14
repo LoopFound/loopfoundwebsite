@@ -31,9 +31,10 @@ for (const route of routes) {
 
 await renderPage("/404", resolve(dist, "404.html"));
 
+const lastmod = new Date().toISOString().slice(0, 10);
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${sitemapUrls.map((url) => `  <url><loc>${url}</loc></url>`).join("\n")}
+${sitemapUrls.map((url) => `  <url><loc>${url}</loc><lastmod>${lastmod}</lastmod></url>`).join("\n")}
 </urlset>
 `;
 await writeFile(resolve(dist, "sitemap.xml"), sitemap);

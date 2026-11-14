@@ -21,7 +21,7 @@ const services = [
 ];
 
 const projects = [
-  { name: "Loop Found", type: "Studio website", image: projectLoopFoundCurrent, imageLarge: projectLoopFoundCurrent, width: 1280, height: 720, link: "https://loopfound.in/", caseStudy: "/projects/loop-found" },
+  { name: "Loop Found", type: "Studio website", image: projectLoopFoundCurrent, imageLarge: projectLoopFoundCurrent, width: 1280, height: 720, link: "https://www.loopfound.in/", caseStudy: "/projects/loop-found" },
   { name: "Haaniya Online Education", type: "Education platform", image: projectHaaniya640, imageLarge: projectHaaniya1280, width: 640, height: 368, link: "https://haaniyaonline4u.com/", caseStudy: "/projects/haaniya-online-education" },
   { name: "St. Britto's Academy", type: "Institutional website", image: projectBrittos, imageLarge: projectBrittos, width: 1200, height: 650, link: "https://st-brittos-academy.netlify.app/", caseStudy: "/projects/st-brittos-academy" },
   { name: "Digital Horizon Conclave", type: "Event platform", image: projectDhc640, imageLarge: projectDhc1280, width: 640, height: 340, link: "https://digital-horizon-conclave-2026.vercel.app/", caseStudy: "/projects/digital-horizon-conclave" },
@@ -184,7 +184,7 @@ const AdkoHome = () => {
         <section ref={heroRef} className="adko-hero">
           <div className="js-hero-content adko-hero-content">
             <h1 className="js-hero-title adko-display adko-hero-title">
-              <span className="sr-only">Domains, hosting, URLs, browsers, and websites by Loop Found.</span>
+              <span className="sr-only">Loop Found: web design and development company in Chennai.</span>
               <span className="adko-word-slot" aria-hidden="true">
                 {heroWords.map((word) => (
                   <span key={word} className={`js-title-line js-rotating-word ${word.length > 9 ? "adko-word--long" : ""}`}>{word}</span>
@@ -193,6 +193,9 @@ const AdkoHome = () => {
             </h1>
             <p className="js-hero-copy adko-hero-copy">
               WEBSITES THAT STAY IN LOOP
+            </p>
+            <p className="mt-3 text-xs font-bold uppercase tracking-[.18em] opacity-70">
+              Web design &amp; development company in Chennai
             </p>
           </div>
 

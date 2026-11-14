@@ -14,7 +14,7 @@ export interface MemberProject {
 export interface TeamMember {
   slug: string;
   aliases: string[];
-  /** Set when the profile lives off-site; /:slug redirects there instead of rendering. */
+  /** Where this member's profile lives (/about or their own subdomain). */
   profileUrl?: string;
   name: string;
   role: string;
@@ -40,6 +40,7 @@ export const teamMembers: TeamMember[] = [
   {
     slug: "Gopinath",
     aliases: ["gopinath", "Gopinath", "gopi"],
+    profileUrl: "https://gopinath.loopfound.in/",
     name: "Gopinath",
     role: "Co-Founder & CMO",
     kicker: "Growth & Brand Strategy",
@@ -147,6 +148,7 @@ export const teamMembers: TeamMember[] = [
   },
   {
     slug: "Pranith",
+    profileUrl: "https://www.loopfound.in/about",
     aliases: ["pranith", "Pranith", "pranith-vincent", "pranithvincent"],
     name: "Pranith Vincent",
     role: "CEO & Founder",

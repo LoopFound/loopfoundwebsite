@@ -1,5 +1,6 @@
 import { Link, Navigate, useParams } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
@@ -11,10 +12,22 @@ const ProjectCaseStudy = () => {
   const project = projectPages.find((item) => item.slug === projectSlug);
   if (!project) return <Navigate to="/404" replace />;
   const path = `/projects/${project.slug}`;
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: `${project.name} website`,
+    description: project.summary,
+    url: `https://www.loopfound.in${path}`,
+    genre: project.type,
+    creator: { "@type": "Organization", name: "Loop Found", url: "https://www.loopfound.in" },
+    about: project.services.join(", "),
+    sameAs: project.liveUrl,
+  };
 
   return <div className="min-h-screen bg-[#151515] text-[#f7f7f4]">
     <SEOHead title={project.title} description={project.description} path={path} type="article" />
     <BreadcrumbSchema items={[{ name: "Home", path: "/" }, { name: "Projects", path: "/projects" }, { name: project.name, path }]} />
+    <Helmet><script type="application/ld+json">{JSON.stringify(schema)}</script></Helmet>
     <Navbar />
     <main id="main-content" className="pt-32">
       <section className="container px-4 pb-20 pt-10 sm:px-6 md:pb-28">
