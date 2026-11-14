@@ -2,6 +2,7 @@ import { ArrowUpRight, Mail, Phone, Globe, Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { track } from "@vercel/analytics";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
@@ -128,6 +129,8 @@ const AgencyInnerPage = ({ page }: { page: PageKind }) => {
       if (!result.ok) throw new Error(payload.error ?? "Contact is temporarily unavailable. Please email teamloopfound@gmail.com.");
       setForm({ name: "", email: "", message: "", website: "" });
       setSubmission("success");
+      track("contact_form_submit");
+      (window as Window & { dataLayer?: unknown[] }).dataLayer?.push({ event: "contact_form_submit" });
       setSubmissionMessage("Message sent. We will get back to you soon.");
     } catch (error) {
       setSubmission("error");

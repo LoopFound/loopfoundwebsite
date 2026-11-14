@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -24,8 +24,8 @@ import AnalyticsConsent from "./components/AnalyticsConsent";
 const queryClient = new QueryClient();
 
 export const AppContent = () => {
-  const [analyticsConsent, setAnalyticsConsent] = useState(false);
-  const handleAnalyticsConsent = useCallback((granted: boolean) => setAnalyticsConsent(granted), []);
+  // Vercel Analytics is cookieless and always on; the consent choice only controls Google Tag Manager.
+  const handleAnalyticsConsent = useCallback(() => undefined, []);
 
   return <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -46,7 +46,7 @@ export const AppContent = () => {
               <Route path="/projects/:projectSlug" element={<ProjectCaseStudy />} />
               <Route path="*" element={<NotFound />} />
         </Routes>
-        {import.meta.env.PROD && analyticsConsent ? <><Analytics /><SpeedInsights /></> : null}
+        {import.meta.env.PROD ? <><Analytics /><SpeedInsights /></> : null}
         <AnalyticsConsent onChange={handleAnalyticsConsent} />
       </TooltipProvider>
     </QueryClientProvider>;
