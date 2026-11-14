@@ -38,7 +38,7 @@ const organizationSchema = {
     email: "team@loopfound.in",
     telephone: "+91-6379586015",
   },
-  sameAs: ["https://www.instagram.com/teamloopfound"],
+  sameAs: ["https://www.instagram.com/teamloopfound", "https://www.linkedin.com/company/teamloopfound/"],
   founder: teamMembers
     .filter((member) => member.role.includes("Founder"))
     .map(personReference),
