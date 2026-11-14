@@ -12,7 +12,7 @@ const team = [
       "Visionary leader driving Loop Found's mission to craft digital experiences that transform businesses. Passionate about clean design and scalable web solutions.",
   },
   {
-    name: "Gopinath",
+    name: "Gopinath R",
     role: "Co-Founder & CMO",
     icon: Megaphone,
     path: "/Gopinath",
@@ -20,7 +20,7 @@ const team = [
       "Strategic marketing mind behind Loop Found's brand growth. Expert in connecting the right audience with compelling digital narratives.",
   },
   {
-    name: "Sai Charan",
+    name: "Sai Charan Meda",
     role: "Backend Developer",
     icon: Server,
     path: "/SaiCharan",

@@ -5,11 +5,11 @@ describe("team member data & slug resolution", () => {
   it("resolves Gopinath via various cases and aliases", () => {
     const member = getMemberBySlug("Gopinath");
     expect(member).toBeDefined();
-    expect(member?.name).toBe("Gopinath");
+    expect(member?.name).toBe("Gopinath R");
     expect(member?.role).toContain("CMO");
 
-    expect(getMemberBySlug("gopinath")?.name).toBe("Gopinath");
-    expect(getMemberBySlug("gopi")?.name).toBe("Gopinath");
+    expect(getMemberBySlug("gopinath")?.name).toBe("Gopinath R");
+    expect(getMemberBySlug("gopi")?.name).toBe("Gopinath R");
   });
 
   it("resolves Pranith via various cases and aliases", () => {
@@ -25,11 +25,11 @@ describe("team member data & slug resolution", () => {
   it("resolves Sai Charan via various cases and aliases", () => {
     const member = getMemberBySlug("SaiCharan");
     expect(member).toBeDefined();
-    expect(member?.name).toBe("Sai Charan");
+    expect(member?.name).toBe("Sai Charan Meda");
     expect(member?.role).toContain("Backend");
 
-    expect(getMemberBySlug("saicharan")?.name).toBe("Sai Charan");
-    expect(getMemberBySlug("sai-charan")?.name).toBe("Sai Charan");
+    expect(getMemberBySlug("saicharan")?.name).toBe("Sai Charan Meda");
+    expect(getMemberBySlug("sai-charan")?.name).toBe("Sai Charan Meda");
   });
 
   it("sends Sai Charan to his off-site profile", () => {

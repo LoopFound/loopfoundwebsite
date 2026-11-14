@@ -100,6 +100,17 @@ export const projectPages = [
     summary: "Our studio website brings Loop Found's positioning, services, selected work, team, contact flow, and referral program into one responsive experience.",
     services: ["Brand positioning", "UI/UX design", "Frontend development", "Technical SEO"],
     liveUrl: "https://www.loopfound.in/",
+    client: "Loop Found is our own studio: a web design and development company in Chennai, founded in 2025.",
+    challenge: "We needed a site that explains what we do in seconds, shows real client work, introduces the team, and turns visitors into enquiries, while staying fast and fully readable by search engines and AI assistants.",
+    delivered: [
+      "An editorial, motion-led homepage with a rotating hero, featured project rail and GSAP scroll animations that respect reduced-motion settings",
+      "Dedicated pages for five services, four case studies, the team, contact and a referral program",
+      "Prerendered HTML for every route so crawlers and AI agents see the full content without running JavaScript",
+      "Structured data for the organization, services, case studies, team and breadcrumbs, plus an XML sitemap, llms.txt and IndexNow",
+      "A secure contact form with validation, spam protection and accessible status messages",
+      "Consent-based analytics that stay off until a visitor accepts",
+    ],
+    stack: "React, TypeScript, Vite, Tailwind CSS and GSAP, deployed on Vercel behind Cloudflare.",
   },
   {
     slug: "haaniya-online-education",
@@ -110,6 +121,16 @@ export const projectPages = [
     summary: "An education-focused digital experience presented through clear visual hierarchy and responsive layouts for learners across devices.",
     services: ["Website design", "Responsive development", "Content hierarchy"],
     liveUrl: "https://haaniyaonline4u.com/",
+    client: "Haaniya Online Education (HOE) is an online tutoring provider founded in 2019. It teaches abacus, phonics, mathematics, English and science to students in grades 2 to 8, with small classes for families in India and the UK.",
+    challenge: "Parents comparing tutoring options need to understand quickly what is taught, for which grades, and how classes work. The website had to present several programmes clearly and stay easy to use on the phones most parents browse on.",
+    delivered: [
+      "A clear programme structure from early skills (abacus and phonics) through middle-school subjects",
+      "Responsive layouts and a pill-style navigation designed for mobile parents",
+      "Content hierarchy that answers grade range, subjects and class format up front",
+      "Search metadata and social previews for each key page",
+      "Analytics loaded only after visitor interaction to keep first load fast",
+    ],
+    stack: "React and Vite, with a performance-focused build.",
   },
   {
     slug: "st-brittos-academy",
@@ -120,6 +141,15 @@ export const projectPages = [
     summary: "An institutional website project focused on making academy information and its digital presence easier to discover and navigate.",
     services: ["Institutional website", "Responsive development", "Information structure"],
     liveUrl: "https://st-brittos-academy.netlify.app/",
+    client: "St. Britto's Academy is a CBSE school in Velachery, Chennai, established in 1995, teaching from kindergarten to Class 12.",
+    challenge: "Families searching for a CBSE school in Velachery need admissions information, academic details and contact options quickly. The school needed a modern website that is easy to navigate and easy for search engines to understand as a local school.",
+    delivered: [
+      "An institutional website structure organised around academics, facilities and admissions",
+      "Responsive design so parents can find information on any device",
+      "Local search setup with School and EducationalOrganization structured data, including curriculum, grade range and Velachery location",
+      "Titles and descriptions targeting CBSE school searches in Velachery and Chennai",
+    ],
+    stack: "React and Vite, hosted on Netlify.",
   },
   {
     slug: "digital-horizon-conclave",
@@ -130,6 +160,14 @@ export const projectPages = [
     summary: "An event-focused website built to present the conclave clearly through an accessible, responsive web experience.",
     services: ["Event website", "UI/UX design", "Responsive development"],
     liveUrl: "https://digital-horizon-conclave-2026.vercel.app/",
+    client: "Digital Horizon Conclave 2026 is an event at Sathyabama Institute of Science and Technology in Chennai, focused on the convergence of AI, gaming and smart realities.",
+    challenge: "An event site has to explain the theme, schedule and participation details clearly and work smoothly for a large audience of students arriving mostly on mobile.",
+    delivered: [
+      "An event website presenting the conclave theme and programme",
+      "UI/UX design built around the AI, gaming and smart-realities theme",
+      "Responsive, accessible layouts for students and visitors on mobile",
+    ],
+    stack: "Next.js, deployed on Vercel.",
   },
 ] as const;
 

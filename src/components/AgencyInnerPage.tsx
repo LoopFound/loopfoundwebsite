@@ -182,8 +182,8 @@ const AgencyInnerPage = ({ page }: { page: PageKind }) => {
               <h2 className="adko-display text-2xl font-bold mb-6 text-[#151515]">TEAM PROFILES</h2>
               <ul className="space-y-4 text-base font-semibold text-[#151515]/80">
                 <li><Link to="/about" className="hover:text-primary transition-colors flex items-center justify-between"><span>Pranith Vincent — CEO & Founder</span> <ArrowUpRight size={16} /></Link></li>
-                <li><a href="https://gopinath.loopfound.in/" className="hover:text-primary transition-colors flex items-center justify-between"><span>Gopinath — Co-Founder & CMO</span> <ArrowUpRight size={16} /></a></li>
-                <li><a href="https://charan.loopfound.in/" className="hover:text-primary transition-colors flex items-center justify-between"><span>Sai Charan — Backend Developer</span> <ArrowUpRight size={16} /></a></li>
+                <li><a href="https://gopinath.loopfound.in/" className="hover:text-primary transition-colors flex items-center justify-between"><span>Gopinath R — Co-Founder & CMO</span> <ArrowUpRight size={16} /></a></li>
+                <li><a href="https://charan.loopfound.in/" className="hover:text-primary transition-colors flex items-center justify-between"><span>Sai Charan Meda — Backend Developer</span> <ArrowUpRight size={16} /></a></li>
               </ul>
             </div>
 

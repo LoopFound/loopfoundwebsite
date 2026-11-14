@@ -48,7 +48,7 @@ const Navbar = () => {
           >
             <img
               src="/images/loopfound-logo-256.webp"
-              alt=""
+              alt="Loop Found logo"
               width="256"
               height="144"
               className="h-10 w-auto rounded-[9px] object-contain"
