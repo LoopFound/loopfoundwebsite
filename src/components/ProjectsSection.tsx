@@ -2,10 +2,10 @@ import { useScrollReveal } from "./useScrollReveal";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-import projectLoopFound from "@/assets/project-loopfound-current.png";
+import projectLoopFound from "@/assets/project-loopfound-1280.webp";
 import projectHaaniya from "@/assets/project-haaniya.png";
 
-import projectBrittos from "@/assets/project-brittos.jpg";
+import projectBrittos from "@/assets/project-brittos-1200.webp";
 import projectDhc from "@/assets/project-dhc.png";
 
 const projects = [

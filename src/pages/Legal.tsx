@@ -8,7 +8,7 @@ type LegalKind = "privacy" | "terms";
 const content = {
   privacy: {
     title: <>PRIVACY<br />NOTICE.</>,
-    description: "How Loop Found handles website analytics and enquiry information.",
+    description: "How Loop Found handles enquiry details and optional website analytics, which providers we use, how long we keep data, and how to request deletion.",
     sections: [
       ["Who we are", "Loop Found is a digital studio that designs and builds websites, products, and brand experiences. This notice explains what information this website collects, why, and the choices you have."],
       ["Information you provide", "When you send an enquiry, we process your name, email address, and project message to respond to your request. Contact data is sent through our email delivery provider and is not stored in this website’s browser application."],
@@ -24,7 +24,7 @@ const content = {
   },
   terms: {
     title: <>WEBSITE<br />TERMS.</>,
-    description: "Terms for use of the Loop Found website.",
+    description: "Terms for using the Loop Found website, covering acceptable use, enquiries, intellectual property, third-party links and liability.",
     sections: [
       ["Acceptance", "By accessing or using this website you agree to these terms. If you do not agree, please do not use the website."],
       ["Using this website", "Use this website for lawful purposes. Do not attempt to disrupt it, access restricted systems, scrape it at scale, or misuse its content or contact channels."],

@@ -1,0 +1,31 @@
+# Loop Found
+
+> Loop Found is a web design and development company in Chennai, Tamil Nadu, India. A founder-led team of three designs, builds and launches business websites, web applications and landing pages for clients across India.
+
+Contact: team@loopfound.in, +91 6379586015, +91 8148448835. LinkedIn: https://www.linkedin.com/company/teamloopfound/
+
+## Services
+
+- [Web Design](https://www.loopfound.in/services/web-design): website structure, visual design systems and responsive layouts
+- [Web Development](https://www.loopfound.in/services/web-development): fast, maintainable websites and web apps (React, TypeScript, Tailwind CSS)
+- [UI/UX Design](https://www.loopfound.in/services/ui-ux-design): user flows, wireframes and interface design
+- [Website Redesign](https://www.loopfound.in/services/website-redesign): rebuilding outdated sites while protecting search rankings
+- [Technical SEO](https://www.loopfound.in/services/seo-optimization): crawlability, metadata, structured data, sitemaps and Search Console
+
+## Projects
+
+- [Loop Found studio website](https://www.loopfound.in/projects/loop-found)
+- [Haaniya Online Education](https://www.loopfound.in/projects/haaniya-online-education): education platform
+- [St. Britto's Academy](https://www.loopfound.in/projects/st-brittos-academy): institutional website
+- [Digital Horizon Conclave](https://www.loopfound.in/projects/digital-horizon-conclave): event platform
+
+## Company
+
+- [About and team](https://www.loopfound.in/about): Pranith Vincent (CEO & Founder), Gopinath (Co-Founder & CMO), Sai Charan (Backend Developer)
+- [Contact](https://www.loopfound.in/contact)
+- [Referral program](https://www.loopfound.in/referral)
+
+## Optional
+
+- [Privacy notice](https://www.loopfound.in/privacy)
+- [Website terms](https://www.loopfound.in/terms)

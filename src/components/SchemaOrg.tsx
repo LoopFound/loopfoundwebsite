@@ -31,13 +31,14 @@ const organizationSchema = {
     { "@type": "Country", name: "India" },
   ],
   priceRange: "$$",
-  contactPoint: {
+  contactPoint: ["+91-6379586015", "+91-8148448835"].map((telephone) => ({
     "@type": "ContactPoint",
     contactType: "customer service",
     url: "https://www.loopfound.in/contact",
     email: "team@loopfound.in",
-    telephone: "+91-6379586015",
-  },
+    telephone,
+    areaServed: "IN",
+  })),
   sameAs: ["https://www.instagram.com/teamloopfound", "https://www.linkedin.com/company/teamloopfound/"],
   founder: teamMembers
     .filter((member) => member.role.includes("Founder"))
