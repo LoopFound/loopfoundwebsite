@@ -6,6 +6,18 @@ import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import BreadcrumbSchema from "@/components/BreadcrumbSchema";
 import { projectPages } from "@/data/seoPages";
+import { ORGANIZATION_ID } from "@/components/SchemaOrg";
+import projectLoopFound from "@/assets/project-loopfound-1280.webp";
+import projectHaaniya from "@/assets/project-haaniya-1280.webp";
+import projectBrittos from "@/assets/project-brittos-1200.webp";
+import projectDhc from "@/assets/project-dhc-1280.webp";
+
+const projectImages: Record<string, string> = {
+  "loop-found": projectLoopFound,
+  "haaniya-online-education": projectHaaniya,
+  "st-brittos-academy": projectBrittos,
+  "digital-horizon-conclave": projectDhc,
+};
 
 const ProjectCaseStudy = () => {
   const { projectSlug } = useParams();
@@ -19,7 +31,8 @@ const ProjectCaseStudy = () => {
     description: project.summary,
     url: `https://www.loopfound.in${path}`,
     genre: project.type,
-    creator: { "@type": "Organization", name: "Loop Found", url: "https://www.loopfound.in" },
+    creator: { "@id": ORGANIZATION_ID },
+    image: projectImages[project.slug] ? `https://www.loopfound.in${projectImages[project.slug]}` : undefined,
     about: project.services.join(", "),
     sameAs: project.liveUrl,
   };

@@ -1,6 +1,9 @@
 import { Helmet } from "react-helmet-async";
 import { teamMembers } from "@/data/team";
 
+export const ORGANIZATION_ID = "https://www.loopfound.in/#organization";
+export const WEBSITE_ID = "https://www.loopfound.in/#website";
+
 const personReference = (member: (typeof teamMembers)[number]) => ({
   "@type": "Person",
   name: member.name,
@@ -12,7 +15,16 @@ const personReference = (member: (typeof teamMembers)[number]) => ({
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": ["Organization", "ProfessionalService"],
+  "@id": ORGANIZATION_ID,
   name: "Loop Found",
+  foundingDate: "2025",
+  foundingLocation: { "@type": "Place", name: "Chennai, Tamil Nadu, India" },
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    opens: "09:00",
+    closes: "19:00",
+  },
   url: "https://www.loopfound.in",
   logo: "https://www.loopfound.in/images/loopfound-logo.jpg",
   image: "https://www.loopfound.in/images/loopfound-logo.jpg",
@@ -89,8 +101,11 @@ const organizationSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": WEBSITE_ID,
   name: "Loop Found",
   url: "https://www.loopfound.in",
+  inLanguage: "en-IN",
+  publisher: { "@id": ORGANIZATION_ID },
 };
 
 const faqSchema = {

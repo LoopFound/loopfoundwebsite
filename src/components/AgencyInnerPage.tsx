@@ -16,6 +16,7 @@ import projectBrittos640 from "@/assets/project-brittos-640.webp";
 import projectBrittos1200 from "@/assets/project-brittos-1200.webp";
 import { networkSites, projectPages, servicePages } from "@/data/seoPages";
 import { teamMembers } from "@/data/team";
+import { ORGANIZATION_ID, WEBSITE_ID } from "@/components/SchemaOrg";
 import { Helmet } from "react-helmet-async";
 
 type PageKind = "about" | "services" | "projects" | "contact" | "referral" | "sitemap";
@@ -50,16 +51,44 @@ const aboutSchema = {
   "@type": "AboutPage",
   url: "https://www.loopfound.in/about",
   name: "About Loop Found",
-  about: { "@type": "Organization", name: "Loop Found", url: "https://www.loopfound.in" },
+  isPartOf: { "@id": WEBSITE_ID },
+  about: { "@id": ORGANIZATION_ID },
   mentions: teamMembers.map((member) => ({
     "@type": "Person",
     name: member.name,
     jobTitle: member.role,
     description: member.tagline,
-    worksFor: { "@type": "Organization", name: "Loop Found", url: "https://www.loopfound.in" },
+    worksFor: { "@id": ORGANIZATION_ID },
     sameAs: [member.socials.linkedin, member.profileUrl?.endsWith("/about") ? undefined : member.profileUrl].filter(Boolean),
     knowsAbout: member.skillCategories.flatMap((category) => category.skills).slice(0, 12),
   })),
+};
+
+const collectionSchema = (path: string, name: string, items: { name: string; path: string }[]) => ({
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  url: `https://www.loopfound.in${path}`,
+  name,
+  isPartOf: { "@id": WEBSITE_ID },
+  about: { "@id": ORGANIZATION_ID },
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: items.map((item, index) => ({ "@type": "ListItem", position: index + 1, name: item.name, url: `https://www.loopfound.in${item.path}` })),
+  },
+});
+
+const pageSchemas: Partial<Record<PageKind, object>> = {
+  about: aboutSchema,
+  contact: {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    url: "https://www.loopfound.in/contact",
+    name: "Contact Loop Found",
+    isPartOf: { "@id": WEBSITE_ID },
+    about: { "@id": ORGANIZATION_ID },
+  },
+  projects: collectionSchema("/projects", "Loop Found web design and development projects", projectPages.map((project) => ({ name: project.name, path: `/projects/${project.slug}` }))),
+  services: collectionSchema("/services", "Loop Found web design and development services", servicePages.map((service) => ({ name: service.name, path: `/services/${service.slug}` }))),
 };
 
 const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
@@ -108,7 +137,7 @@ const AgencyInnerPage = ({ page }: { page: PageKind }) => {
 
   return <div ref={pageRef} className={`agency-page agency-page--${content.tone} min-h-screen bg-[#f7f7f4] text-[#151515]`}>
     <SEOHead title={content.seo} description={content.description} path={`/${page === "about" ? "about" : page}`} />
-    {page === "about" && <Helmet><script type="application/ld+json">{JSON.stringify(aboutSchema)}</script></Helmet>}
+    {pageSchemas[page] && <Helmet><script type="application/ld+json">{JSON.stringify(pageSchemas[page])}</script></Helmet>}
     <Navbar />
     <main id="main-content">
       <section className="agency-inner-hero">
@@ -119,7 +148,7 @@ const AgencyInnerPage = ({ page }: { page: PageKind }) => {
 
       {page === "about" && <>
         <section className="agency-statement bg-[#151515] text-[#f7f7f4]"><div className="js-inner-reveal"><p className="agency-kicker text-primary">Our point of view</p><h2 className="adko-display">GOOD DESIGN<br />HAS A JOB.</h2><p>We do not use design to decorate a business. We use it to make the right people understand, trust, and choose it.</p></div></section>
-        <section className="px-4 py-20 sm:px-6 md:py-28"><div className="container js-inner-reveal grid gap-10 md:grid-cols-[.8fr_1.2fr]"><div><p className="agency-kicker">Who we are</p><h2 className="adko-display mt-4 text-5xl leading-[.88]">WHAT IS LOOP FOUND?</h2></div><div className="space-y-5 text-lg leading-relaxed text-[#4b4b4b]"><p>Loop Found is a web design and development company based in Chennai, Tamil Nadu. A small founder-led team of three plans, designs, builds and launches business websites, web applications and landing pages for clients across India.</p><p>Our services cover web design, web development, UI/UX design, website redesign and technical SEO. Recent work includes an education platform (Haaniya Online Education), an institutional website (St. Britto&apos;s Academy) and an event platform (Digital Horizon Conclave).</p><p>Every project is handled directly by the people below, from the first call to launch and after.</p></div></div></section>
+        <section className="px-4 py-20 sm:px-6 md:py-28"><div className="container js-inner-reveal grid gap-10 md:grid-cols-[.8fr_1.2fr]"><div><p className="agency-kicker">Who we are</p><h2 className="adko-display mt-4 text-5xl leading-[.88]">WHAT IS LOOP FOUND?</h2></div><div className="space-y-5 text-lg leading-relaxed text-[#4b4b4b]"><p>Loop Found is a web design and development company based in Chennai, Tamil Nadu, founded in 2025. A small founder-led team of three plans, designs, builds and launches business websites, web applications and landing pages for clients across India.</p><p>Our services cover web design, web development, UI/UX design, website redesign and technical SEO. Recent work includes an education platform (Haaniya Online Education), an institutional website (St. Britto&apos;s Academy) and an event platform (Digital Horizon Conclave).</p><p>Every project is handled directly by the people below, from the first call to launch and after.</p></div></div></section>
         <section className="agency-grid-section"><div className="js-inner-reveal agency-section-head"><p className="agency-kicker">People behind work</p><h2 className="adko-display">SMALL TEAM.<br />BIG INTENT.</h2></div><div className="border-t border-black/20">{[...teamMembers].sort((a, b) => Number(b.role.startsWith("CEO")) - Number(a.role.startsWith("CEO"))).map((member) => { const external = member.profileUrl && !member.profileUrl.endsWith("/about"); return <article key={member.slug} className="js-inner-reveal grid gap-8 border-b border-black/20 py-12 md:grid-cols-[.8fr_1.2fr] md:py-16"><div><span className="text-[11px] font-extrabold uppercase tracking-[.14em]">{member.role}</span><h3 className="adko-display mt-4 text-[clamp(45px,5vw,76px)] leading-[.85]">{member.name}</h3><p className="mt-4 max-w-sm text-[#555]">{member.tagline}</p><div className="mt-6 flex flex-wrap gap-4 text-xs font-bold uppercase tracking-wider text-primary">{member.socials.linkedin && <a href={member.socials.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5">LinkedIn <ArrowUpRight size={14} /></a>}{external && <a href={member.profileUrl} className="inline-flex items-center gap-1.5">Full portfolio <ArrowUpRight size={14} /></a>}</div></div><div className="space-y-4 leading-relaxed text-[#4b4b4b]">{member.bio.map((line) => <p key={line}>{line}</p>)}<p className="pt-2 text-xs font-bold uppercase tracking-[.14em] text-[#151515]">Skills</p><ul className="flex flex-wrap gap-2">{member.skillCategories.flatMap((category) => category.skills).slice(0, 12).map((skill) => <li key={skill} className="rounded-full border border-black/15 px-3 py-1 text-sm">{skill}</li>)}</ul></div></article>; })}</div></section>
       </>}
 
@@ -128,7 +157,7 @@ const AgencyInnerPage = ({ page }: { page: PageKind }) => {
       {page === "projects" && <section className="px-4 py-16 sm:px-6 md:py-20"><div className="container js-inner-reveal grid gap-10 md:grid-cols-[.8fr_1.2fr]"><div><p className="agency-kicker">About this work</p><h2 className="adko-display mt-4 text-5xl leading-[.88]">WHAT HAVE WE BUILT?</h2></div><div className="space-y-5 text-lg leading-relaxed text-[#f7f7f4]/75"><p>Loop Found designs and develops websites for education providers, institutions, events and growing businesses. Each project below covers strategy, UI/UX design, responsive development and launch, built by our team in Chennai.</p><p>Open a project to see what we worked on and visit the live website.</p></div></div></section>}
       {page === "projects" && <section className="agency-projects">{projects.map((project, index) => <Link className={`js-inner-reveal agency-project agency-project--${index + 1}`} key={project.name} to={project.path}><div className="agency-project-media"><img className="js-inner-image" src={project.image} srcSet={`${project.image} 640w, ${project.imageLarge} 1280w`} sizes="(max-width: 767px) 100vw, 50vw" width={project.width} height={project.height} alt={`${project.name} website project`} loading="lazy" decoding="async" /></div><div><p>{project.type}</p><h2 className="adko-display">{project.name}</h2></div><ArrowUpRight /></Link>)}</section>}
 
-      {page === "contact" && <section className="px-4 py-16 sm:px-6 md:py-20"><div className="container js-inner-reveal grid gap-10 md:grid-cols-[.8fr_1.2fr]"><div><p className="agency-kicker">Before you write</p><h2 className="adko-display mt-4 text-5xl leading-[.88]">HOW DO WE START?</h2></div><div className="space-y-5 text-lg leading-relaxed text-[#4b4b4b]"><p>Send a short note about your business, what the website needs to do, and any deadline. We reply by email, usually with a few questions, then set up a short call to understand the project.</p><p>After the call we share the scope, deliverables and a quote before any design or development starts. Loop Found is based in Chennai, Tamil Nadu and works with clients across India.</p></div></div></section>}
+      {page === "contact" && <section className="px-4 py-16 sm:px-6 md:py-20"><div className="container js-inner-reveal grid gap-10 md:grid-cols-[.8fr_1.2fr]"><div><p className="agency-kicker">Before you write</p><h2 className="adko-display mt-4 text-5xl leading-[.88]">HOW DO WE START?</h2></div><div className="space-y-5 text-lg leading-relaxed text-[#4b4b4b]"><p>Send a short note about your business, what the website needs to do, and any deadline. We reply by email, usually with a few questions, then set up a short call to understand the project.</p><p>After the call we share the scope, deliverables and a quote before any design or development starts. Loop Found is based in Chennai, Tamil Nadu and works with clients across India. We are available Monday to Saturday, 9am to 7pm IST.</p></div></div></section>}
       {page === "contact" && <section className="agency-contact"><div className="js-inner-reveal agency-contact-links"><p className="agency-kicker">Reach us direct</p>{contactLinks.map(({ icon: Icon, label, href }) => <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer"><Icon /><span>{label}</span><ArrowUpRight /></a>)}</div><form className="js-inner-reveal agency-contact-form" onSubmit={submit}><p id="contact-form-help" className="text-sm leading-relaxed text-[#f7f7f4]/60">Your message sends securely. Fields marked required must be completed.</p><label className="sr-only" aria-hidden="true">Website<input tabIndex={-1} autoComplete="off" value={form.website} onChange={event => setForm({ ...form, website: event.target.value })} /></label><label>Your name<input required minLength={2} maxLength={100} autoComplete="name" value={form.name} onChange={event => setForm({ ...form, name: event.target.value })} /></label><label>Email<input required type="email" maxLength={254} autoComplete="email" value={form.email} onChange={event => setForm({ ...form, email: event.target.value })} /></label><label>What are we making?<textarea required minLength={10} maxLength={2000} rows={6} value={form.message} onChange={event => setForm({ ...form, message: event.target.value })} /></label><button type="submit" disabled={submission === "sending"} aria-describedby="contact-form-help">{submission === "sending" ? "Sending…" : "Send message"} <ArrowUpRight size={18} /></button><p role="status" aria-live="polite" className={submission === "error" ? "text-sm text-red-300" : "text-sm text-[#f7f7f4]/70"}>{submissionMessage}</p></form></section>}
 
       {page === "referral" && <><section className="agency-grid-section"><div className="js-inner-reveal agency-section-head"><p className="agency-kicker">How it works</p><h2 className="adko-display">MAKE<br />INTRO.</h2></div><div className="agency-step-list">{[["01", "Introduce", "Connect us with business needing a sharper website."], ["02", "We talk", "We take care of discovery, strategy, and project scoping."], ["03", "You earn", "Receive a percentage when the project becomes real."]].map(([n, title, text]) => <article key={n} className="js-inner-reveal"><span>{n}</span><h3 className="adko-display">{title}</h3><p>{text}</p></article>)}</div></section><section className="agency-referral-cta"><p>Ready when you are.</p><a href="https://docs.google.com/forms/d/e/1FAIpQLSeyhHoi6yDZjGk-HJHFkh8cvALE9KjDYnEJhG_j2VVWjeFP_Q/viewform?usp=publish-editor" target="_blank" rel="noreferrer">Join waitlist <ArrowUpRight /></a></section></>}

@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEOHead from "@/components/SEOHead";
 import BreadcrumbSchema from "@/components/BreadcrumbSchema";
+import { ORGANIZATION_ID, WEBSITE_ID } from "@/components/SchemaOrg";
 import { serviceProcess, servicePages, servicesLastUpdated } from "@/data/seoPages";
 
 const ServiceDetail = () => {
@@ -24,7 +25,8 @@ const ServiceDetail = () => {
       { "@type": "AdministrativeArea", name: "Tamil Nadu" },
       { "@type": "Country", name: "India" },
     ],
-    provider: { "@type": "Organization", name: "Loop Found", url: "https://www.loopfound.in" },
+    serviceType: service.name,
+    provider: { "@id": ORGANIZATION_ID },
   };
   const pageSchema = {
     "@context": "https://schema.org",
@@ -32,6 +34,7 @@ const ServiceDetail = () => {
     name: service.title,
     url: `https://www.loopfound.in${path}`,
     dateModified: servicesLastUpdated,
+    isPartOf: { "@id": WEBSITE_ID },
     about: { "@type": "Service", name: service.name },
   };
 
