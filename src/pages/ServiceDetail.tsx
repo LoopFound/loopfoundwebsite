@@ -74,7 +74,7 @@ const ServiceDetail = () => {
         <div className="mt-12 grid max-w-4xl gap-10">{service.faqs.map(({ q, a }) => <div key={q}><h3 className="text-xl font-bold">{q}</h3><p className="mt-3 text-lg leading-relaxed text-[#4b4b4b]">{a}</p></div>)}</div>
         <p className="mt-12 text-sm text-[#4b4b4b]">Last updated <time dateTime={servicesLastUpdated}>{new Date(servicesLastUpdated).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })}</time></p>
       </section>
-      <section className="container px-4 py-20 sm:px-6 md:py-28"><p className="max-w-2xl text-lg leading-relaxed">Need {service.name.toLowerCase()} for a business in Chennai, Tamil Nadu, or elsewhere in India? Tell us what the website needs to achieve.</p><Link to="/contact" className="mt-8 inline-flex items-center gap-3 rounded-full bg-primary px-7 py-4 text-sm font-bold">Discuss your project <ArrowUpRight size={18} /></Link></section>
+      <section className="container px-4 py-20 sm:px-6 md:py-28"><p className="max-w-2xl text-lg leading-relaxed">Need {service.name.toLowerCase()} for a business in Chennai, Tamil Nadu, or elsewhere in India? Tell us what the website needs to achieve.</p><Link to="/contact" className="vg-btn vg-btn--primary mt-8 inline-flex items-center rounded-full bg-primary px-7 py-4 text-sm font-bold"><span className="inline-flex items-center gap-3">Discuss your project <ArrowUpRight size={18} /></span></Link></section>
     </main>
     <Footer />
   </div>;

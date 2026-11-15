@@ -569,3 +569,94 @@
     }
   }
 }
+
+/* ── Vengeance UI polish ─────────────────────────────── */
+@property --mask-x { syntax: "<percentage>"; inherits: true; initial-value: 100%; }
+@property --vg-a { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+
+.vg-btn { --shine: rgb(0 0 0 / .55); position: relative; isolation: isolate; overflow: hidden;
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .25s; }
+.vg-btn--dark { --shine: rgb(255 255 255 / .6); }
+.vg-btn::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; padding: 1.5px; pointer-events: none;
+  background: linear-gradient(-75deg, transparent 30%, var(--shine) 50%, transparent 70%) 100% 0 / 200% 100%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box exclude, linear-gradient(#fff 0 0); opacity: 0; }
+.vg-btn:hover { transform: translateY(-2px) scale(1.01); box-shadow: 0 14px 34px -14px hsl(var(--primary) / .8); }
+.vg-btn:hover::before { animation: vgBorder 1s linear; }
+.vg-btn:active { transform: scale(.97); transition-duration: .12s; }
+.vg-btn--primary::before { animation: vgBorder 1s linear 1s infinite; }
+.vg-btn--primary > span { mask-image: linear-gradient(-75deg, #000 calc(var(--mask-x) + 20%), rgb(0 0 0 / .35) calc(var(--mask-x) + 30%), #000 calc(var(--mask-x) + 100%));
+  animation: vgText 2.4s linear infinite; }
+.vg-btn:focus-visible { outline: 2px solid hsl(var(--primary)); outline-offset: 3px; }
+@keyframes vgBorder { 0% { background-position: 100% 0; opacity: 0 } 50% { opacity: 1 } 100% { background-position: 0 0; opacity: 0 } }
+@keyframes vgText { 0% { --mask-x: 100% } 50%, 100% { --mask-x: -100% } }
+
+/* Cursor spotlight + aurora ring (glow-border-card) */
+[data-spot] { position: relative; isolation: isolate; --mx: 50%; --my: 50%; }
+[data-spot]::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 1;
+  background: radial-gradient(420px circle at var(--mx) var(--my), rgb(255 255 255 / .14), transparent 45%);
+  opacity: 0; transition: opacity .3s; }
+[data-spot]::after { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 2px; pointer-events: none; z-index: 2;
+  background: conic-gradient(from var(--vg-a), transparent 0 50%, hsl(var(--primary)) 68%, #fff 78%, transparent 92%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box exclude, linear-gradient(#fff 0 0);
+  opacity: 0; transition: opacity .3s; animation: vgSpin 4s linear infinite; }
+[data-spot]:hover::before, [data-spot]:hover::after { opacity: 1; }
+[data-spot="light"]::before { background: radial-gradient(420px circle at var(--mx) var(--my), rgb(255 255 255 / .4), transparent 45%); }
+[data-spot="light"]::after { background: conic-gradient(from var(--vg-a), transparent 0 50%, #151515 72%, transparent 92%); }
+@keyframes vgSpin { to { --vg-a: 360deg; } }
+
+/* Double line hover link */
+.vg-link { position: relative; display: inline-block; width: fit-content; }
+.vg-link::before, .vg-link::after { content: ""; position: absolute; left: 0; right: 0; height: 1px; background: currentColor;
+  transform: scaleX(0); transition: transform .45s cubic-bezier(.65,0,.35,1); }
+.vg-link::before { bottom: -3px; transform-origin: right; }
+.vg-link::after { bottom: -6px; transform-origin: left; transition-delay: .08s; opacity: .5; }
+.vg-link:hover::before, .vg-link:hover::after, .vg-link:focus-visible::before, .vg-link:focus-visible::after { transform: scaleX(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .vg-btn::before, .vg-btn--primary > span, [data-spot]::after { animation: none !important; }
+  .vg-btn:hover { transform: none; }
+}
+
+/* Border beam: light orbiting one focal card */
+.vg-beam { position: relative; isolation: isolate; border-radius: 24px; padding: clamp(20px, 3vw, 36px); }
+.vg-beam::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; padding: 1.5px; pointer-events: none;
+  background: conic-gradient(from var(--vg-a), rgb(247 247 244 / .12) 0 70%, hsl(var(--primary)) 85%, #fff 90%, rgb(247 247 244 / .12) 96%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box exclude, linear-gradient(#fff 0 0);
+  animation: vgSpin 6s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .vg-beam::before { animation: none; } }
+
+/* Social flip tiles */
+.vg-flip { display: flex; gap: 8px; }
+.vg-flip-tile { position: relative; display: grid; width: 44px; height: 44px; perspective: 600px; transform-style: preserve-3d;
+  transition: transform .6s cubic-bezier(.34,1.56,.64,1); }
+.vg-flip-face { grid-area: 1 / 1; display: grid; place-items: center; border-radius: 12px; border: 1px solid rgb(247 247 244 / .2);
+  background: rgb(247 247 244 / .04); font-weight: 800; font-size: 16px; backface-visibility: hidden; }
+.vg-flip-back { transform: rotateY(180deg); background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); border-color: transparent; }
+.vg-flip:hover .vg-flip-tile, .vg-flip-tile:focus-visible { transform: rotateY(180deg); }
+.vg-flip-tile:focus-visible { outline: 2px solid hsl(var(--primary)); outline-offset: 3px; border-radius: 12px; }
+.vg-flip-tip { position: absolute; bottom: calc(100% + 10px); left: 50%; translate: -50% 6px; transform: rotateY(180deg); white-space: nowrap; padding: 4px 9px;
+  border-radius: 8px; background: #f7f7f4; color: #151515; font-size: 11px; font-weight: 700; opacity: 0; pointer-events: none;
+  transition: opacity .2s, translate .3s cubic-bezier(.34,1.56,.64,1); backface-visibility: hidden; }
+.vg-flip-tile:hover .vg-flip-tip, .vg-flip-tile:focus-visible .vg-flip-tip { opacity: 1; translate: -50% 0; }
+
+/* Copy button */
+.vg-copy { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 8px; color: rgb(247 247 244 / .5);
+  transition: color .2s, background .2s, transform .3s cubic-bezier(.34,1.56,.64,1); }
+.vg-copy:hover { color: hsl(var(--primary)); background: rgb(247 247 244 / .08); }
+.vg-copy:active { transform: scale(.88); }
+.vg-copy[data-copied] { color: #4ade80; }
+.vg-copy:focus-visible { outline: 2px solid hsl(var(--primary)); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .vg-flip-tile { transition: none; } }
+
+/* Perspective grid behind the hero (Vengeance UI perspective-grid) */
+.adko-hero::before { content: ""; position: absolute; inset: 35% -50% -10%; z-index: 0; pointer-events: none;
+  background-image: linear-gradient(rgb(21 21 21 / .09) 1px, transparent 1px), linear-gradient(90deg, rgb(21 21 21 / .09) 1px, transparent 1px);
+  background-size: 64px 64px; transform: perspective(700px) rotateX(62deg); transform-origin: 50% 0;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 60%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 25%, #000 60%, transparent);
+  animation: vgGrid 3s linear infinite; }
+@keyframes vgGrid { to { background-position: 0 64px, 0 0; } }
+@media (prefers-reduced-motion: reduce) { .adko-hero::before { animation: none; } }

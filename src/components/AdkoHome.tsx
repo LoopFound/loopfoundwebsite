@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import SEOHead from "./SEOHead";
+import { useSpotlight } from "./useSpotlight";
 import projectLoopFound640 from "@/assets/project-loopfound-640.webp";
 import projectLoopFound1280 from "@/assets/project-loopfound-1280.webp";
 import projectHaaniya640 from "@/assets/project-haaniya-640.webp";
@@ -47,6 +48,7 @@ const useIsomorphicLayoutEffect = typeof window === "undefined" ? useEffect : us
 const AdkoHome = () => {
   const heroRef = useRef<HTMLElement>(null);
   const pageRef = useRef<HTMLDivElement>(null);
+  useSpotlight();
 
   useIsomorphicLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -108,6 +110,15 @@ const AdkoHome = () => {
         scale: 0.84,
         opacity: 0,
         duration: 1.05,
+        ease: "power4.out",
+      });
+
+      gsap.from(".js-stagger-char", {
+        scrollTrigger: { trigger: ".js-manifesto", start: "top 62%", toggleActions: "play none none reverse" },
+        yPercent: 110,
+        rotate: 8,
+        duration: 0.8,
+        stagger: 0.025,
         ease: "power4.out",
       });
 
@@ -229,7 +240,13 @@ const AdkoHome = () => {
             className="js-manifesto-content max-w-5xl text-center"
           >
             <p className="mb-8 text-xs font-bold uppercase tracking-[0.25em] opacity-70">What we are here to do</p>
-            <h2 className="adko-display text-[clamp(5rem,13vw,12rem)] leading-[0.78] tracking-[-0.05em]">WE MAKE THE<br />WEB WORK.</h2>
+            <h2 aria-label="We make the web work." className="adko-display text-[clamp(5rem,13vw,12rem)] leading-[0.78] tracking-[-0.05em]">
+              {["WE MAKE THE", "WEB WORK."].map((line) => (
+                <span key={line} aria-hidden="true" className="block overflow-hidden pb-[0.06em]">
+                  {Array.from(line).map((ch, i) => <span key={i} className="js-stagger-char inline-block">{ch === " " ? "\u00a0" : ch}</span>)}
+                </span>
+              ))}
+            </h2>
             <p className="mx-auto mt-10 max-w-2xl text-base leading-relaxed md:text-xl">
               Loop Found brings strategy, design, development, and launch support together so your website can do more than simply exist online.
             </p>
@@ -249,6 +266,7 @@ const AdkoHome = () => {
               {services.map(([title, description], index) => (
                 <div
                   key={title}
+                  data-spot="light"
                   className="js-service-row group grid gap-6 rounded-2xl bg-primary px-6 py-8 text-primary-foreground md:grid-cols-[0.86fr_1.5fr_auto] md:items-center md:px-10 md:py-10"
                 >
                   <h3 className="adko-display text-4xl leading-[0.85] md:text-5xl">{title}</h3>
@@ -273,6 +291,7 @@ const AdkoHome = () => {
                 <Link
                   key={project.name}
                   to={project.caseStudy}
+                  data-spot
                   className={`js-work-card group overflow-hidden rounded-2xl bg-[#252525] ${index === 0 ? "md:col-span-2" : ""}`}
                 >
                   <div className={`overflow-hidden ${index === 0 ? "aspect-[2/1]" : "aspect-[4/3]"}`}>
@@ -294,8 +313,8 @@ const AdkoHome = () => {
         <section className="js-cta bg-[#f7f7f4] px-5 py-24 md:px-10 md:py-36">
           <div className="js-cta-content mx-auto flex max-w-7xl flex-col items-start justify-between gap-12 md:flex-row md:items-end">
             <h2 className="adko-display max-w-4xl text-[clamp(4.8rem,10vw,10rem)] leading-[0.78] tracking-[-0.05em]">READY TO MAKE<br />SOMETHING MOVE?</h2>
-            <Link to="/contact" className="inline-flex items-center gap-3 rounded-full bg-primary px-7 py-5 text-sm font-extrabold uppercase tracking-[0.12em] text-primary-foreground transition-transform hover:-translate-y-1">
-              Start a project <ArrowUpRight size={18} />
+            <Link to="/contact" className="vg-btn vg-btn--primary inline-flex items-center rounded-full bg-primary px-7 py-5 text-sm font-extrabold uppercase tracking-[0.12em] text-primary-foreground">
+              <span className="inline-flex items-center gap-3">Start a project <ArrowUpRight size={18} /></span>
             </Link>
           </div>
         </section>
