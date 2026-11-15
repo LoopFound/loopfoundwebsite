@@ -85,13 +85,13 @@ const AdkoHome = () => {
         if (!rail) return;
         const heroScroll = gsap.timeline({
           scrollTrigger: {
-            trigger: hero, start: "top top", end: "+=70%", scrub: 0.7,
+            trigger: hero, start: "top top", end: "+=55%", scrub: 0.7,
             pin: true, anticipatePin: 1, invalidateOnRefresh: true,
           },
         });
         heroScroll
           .fromTo(rail, { rotationX: 6, rotationY: -5, rotationZ: -8, xPercent: 0, yPercent: 0 }, {
-            rotationX: 3, rotationY: 5, rotationZ: -3, xPercent: -3, yPercent: -72,
+            rotationX: 3, rotationY: 5, rotationZ: -3, xPercent: -3, yPercent: -38,
             duration: 1, ease: "none",
           }, 0);
         if (copy) heroScroll.to(copy, { y: -36, opacity: 0, duration: 0.3, ease: "none" }, 0);
@@ -235,7 +235,7 @@ const AdkoHome = () => {
           </div>
         </section>
 
-        <section className="js-manifesto adko-manifesto grid min-h-[90svh] place-items-center bg-primary px-6 py-24 text-primary-foreground md:px-10">
+        <section className="js-manifesto adko-manifesto grid min-h-[75svh] place-items-center bg-primary px-6 py-20 text-primary-foreground md:px-10">
           <div
             className="js-manifesto-content max-w-5xl text-center"
           >
@@ -253,15 +253,15 @@ const AdkoHome = () => {
           </div>
         </section>
 
-        <section className="js-expertise bg-[#f7f7f4] px-5 py-24 md:px-10 md:py-36">
+        <section className="js-expertise bg-[#f7f7f4] px-5 py-24 md:px-10 md:py-28">
           <div
             className="mx-auto max-w-7xl"
           >
-            <div className="mb-16 flex flex-col justify-between gap-6 border-y border-[#151515]/20 py-7 md:flex-row md:items-end">
+            <div className="mb-12 flex flex-col justify-between gap-6 border-y border-[#151515]/20 py-7 md:flex-row md:items-end">
               <p className="text-xs font-bold uppercase tracking-[0.2em]">Capabilities / 01—04</p>
               <p className="max-w-sm text-sm leading-relaxed text-[#4b4b4b]">The right blend of creative thinking and technical execution for a website that earns its place in your business.</p>
             </div>
-            <h2 className="js-expertise-heading adko-display mb-16 text-center text-[clamp(4.5rem,9vw,9rem)] leading-[0.8] tracking-[-0.05em]">OUR EXPERTISE</h2>
+            <h2 className="js-expertise-heading adko-display mb-12 text-center text-[clamp(4.5rem,9vw,9rem)] leading-[0.8] tracking-[-0.05em]">OUR EXPERTISE</h2>
             <div className="space-y-4">
               {services.map(([title, description], index) => (
                 <div
@@ -280,13 +280,13 @@ const AdkoHome = () => {
           </div>
         </section>
 
-        <section className="js-work bg-[#151515] px-5 py-24 text-[#f7f7f4] md:px-10 md:py-36">
+        <section className="js-work bg-[#151515] px-5 py-24 text-[#f7f7f4] md:px-10 md:py-28">
           <div className="mx-auto max-w-7xl">
             <div className="js-work-heading">
               <p className="mb-6 text-xs font-bold uppercase tracking-[0.22em] text-primary">Recent launches</p>
               <h2 className="adko-display max-w-5xl text-[clamp(4.8rem,10vw,10rem)] leading-[0.78] tracking-[-0.05em]">WORK THAT<br />GETS NOTICED.</h2>
             </div>
-            <div className="mt-20 grid gap-5 md:grid-cols-2">
+            <div className="mt-14 grid gap-5 md:grid-cols-2">
               {projects.map((project, index) => (
                 <Link
                   key={project.name}
@@ -310,7 +310,7 @@ const AdkoHome = () => {
           </div>
         </section>
 
-        <section className="js-cta bg-[#f7f7f4] px-5 py-24 md:px-10 md:py-36">
+        <section className="js-cta bg-[#f7f7f4] px-5 py-24 md:px-10 md:py-28">
           <div className="js-cta-content mx-auto flex max-w-7xl flex-col items-start justify-between gap-12 md:flex-row md:items-end">
             <h2 className="adko-display max-w-4xl text-[clamp(4.8rem,10vw,10rem)] leading-[0.78] tracking-[-0.05em]">READY TO MAKE<br />SOMETHING MOVE?</h2>
             <Link to="/contact" className="vg-btn vg-btn--primary inline-flex items-center rounded-full bg-primary px-7 py-5 text-sm font-extrabold uppercase tracking-[0.12em] text-primary-foreground">

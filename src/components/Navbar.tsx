@@ -82,7 +82,7 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center">
             <Link
               to="/contact"
-              className="vg-btn relative inline-flex items-center justify-center rounded-full border border-black/25 bg-white/80 px-7 py-2.5 text-[12px] font-bold uppercase tracking-wider text-[#151515] shadow-[0_0_0_1px_rgba(234,179,8,0.35)] transition-all hover:border-black hover:bg-[#151515] hover:text-[#f7f7f4] hover:shadow-md"
+              className="vg-btn vg-glow relative inline-flex items-center justify-center rounded-full border border-black/25 bg-white/80 px-7 py-2.5 text-[12px] font-bold uppercase tracking-wider text-[#151515] shadow-[0_0_0_1px_rgba(234,179,8,0.35)] transition-all hover:border-black hover:bg-[#151515] hover:text-[#f7f7f4] hover:shadow-md"
             >
               GET IN TOUCH
             </Link>
